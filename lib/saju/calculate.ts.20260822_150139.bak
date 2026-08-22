@@ -1,0 +1,210 @@
+﻿import {
+  calculateFourPillars,
+  getHeavenlyStemElement,
+  getEarthlyBranchElement,
+} from "manseryeok";
+
+type Gender = "male" | "female";
+
+export type SajuInput = {
+  birthDate: string;
+  birthHour?: number | null;
+  birthMinute?: number | null;
+  birthTimeUnknown?: boolean;
+  calendarType: "solar" | "lunar";
+  lunarLeapMonth?: boolean;
+  gender: Gender;
+};
+
+const hanjaMap: Record<string, string> = {
+  갑: "甲",
+  을: "乙",
+  병: "丙",
+  정: "丁",
+  무: "戊",
+  기: "己",
+  경: "庚",
+  신: "辛",
+  임: "壬",
+  계: "癸",
+
+  자: "子",
+  축: "丑",
+  인: "寅",
+  묘: "卯",
+  진: "辰",
+  사: "巳",
+  오: "午",
+  미: "未",
+  신: "申",
+  유: "酉",
+  술: "戌",
+  해: "亥",
+};
+
+function pillarToHanja(pillar?: string | null) {
+  if (!pillar) return null;
+
+  return pillar
+    .split("")
+    .map((char) => hanjaMap[char] ?? char)
+    .join("");
+}
+
+function splitPillar(pillar: string) {
+  return {
+    stem: pillar.charAt(0),
+    branch: pillar.charAt(1),
+  };
+}
+
+export function calculateSaju(input: SajuInput) {
+  const [yearString, monthString, dayString] =
+    input.birthDate.split("-");
+
+  const year = Number(yearString);
+  const month = Number(monthString);
+  const day = Number(dayString);
+
+  if (!year || !month || !day) {
+    throw new Error("생년월일 형식이 올바르지 않습니다.");
+  }
+
+  // 출생시간 미상인 경우 일주에 영향을 주지 않는 정오를 사용해
+  // 년주/월주/일주만 계산하고 시주는 저장하지 않습니다.
+  const hour = input.birthTimeUnknown
+    ? 12
+    : Number(input.birthHour ?? 0);
+
+  const minute = input.birthTimeUnknown
+    ? 0
+    : Number(input.birthMinute ?? 0);
+
+  const result = calculateFourPillars({
+    year,
+    month,
+    day,
+    hour,
+    minute,
+
+    isLunar:
+      input.calendarType === "lunar",
+
+    isLeapMonth:
+      input.calendarType === "lunar"
+        ? Boolean(input.lunarLeapMonth)
+        : false,
+
+    gender: input.gender,
+
+    // 현재 선녀사주 v1 기준:
+    // 한국 표준시 입력값 그대로 사용
+    // 23시 이후 일주 변경은 자정 기준
+    dayBoundary: "midnight",
+  });
+
+  const pillars = result.toObject();
+
+  const yearPillar = pillars.year;
+  const monthPillar = pillars.month;
+  const dayPillar = pillars.day;
+
+  const hourPillar = input.birthTimeUnknown
+    ? null
+    : pillars.hour;
+
+  const allPillars = [
+    yearPillar,
+    monthPillar,
+    dayPillar,
+    ...(hourPillar ? [hourPillar] : []),
+  ];
+
+  const elementCounts: Record<
+    "목" | "화" | "토" | "금" | "수",
+    number
+  > = {
+    목: 0,
+    화: 0,
+    토: 0,
+    금: 0,
+    수: 0,
+  };
+
+  for (const pillar of allPillars) {
+    const { stem, branch } =
+      splitPillar(pillar);
+
+    const stemElement =
+      getHeavenlyStemElement(stem as any);
+
+    const branchElement =
+      getEarthlyBranchElement(branch as any);
+
+    if (stemElement in elementCounts) {
+      elementCounts[
+        stemElement as keyof typeof elementCounts
+      ] += 1;
+    }
+
+    if (branchElement in elementCounts) {
+      elementCounts[
+        branchElement as keyof typeof elementCounts
+      ] += 1;
+    }
+  }
+
+  const tenGods = structuredClone(
+    result.tenGods
+  ) as any;
+
+  // 출생시간이 없으면 임의 계산에 사용했던 시주 십신 제거
+  if (input.birthTimeUnknown && tenGods) {
+    tenGods.hour = null;
+  }
+
+  const luckPillars =
+    result.luckPillars ?? null;
+
+  const dayStem =
+    splitPillar(dayPillar).stem;
+
+  return {
+    pillars: {
+      year: yearPillar,
+      month: monthPillar,
+      day: dayPillar,
+      hour: hourPillar,
+    },
+
+    hanja: {
+      year: pillarToHanja(yearPillar),
+      month: pillarToHanja(monthPillar),
+      day: pillarToHanja(dayPillar),
+      hour: pillarToHanja(hourPillar),
+    },
+
+    dayMaster: {
+      korean: dayStem,
+      hanja: hanjaMap[dayStem] ?? dayStem,
+      element:
+        getHeavenlyStemElement(dayStem as any),
+    },
+
+    fiveElements: elementCounts,
+
+    tenGods,
+
+    voidBranches:
+      result.voidBranches ?? [],
+
+    luckPillars,
+
+    options: {
+      dayBoundary: "midnight",
+      trueSolarTime: false,
+      birthTimeUnknown:
+        Boolean(input.birthTimeUnknown),
+    },
+  };
+}
