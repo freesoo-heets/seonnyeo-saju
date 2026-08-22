@@ -1,4 +1,6 @@
-﻿import { notFound } from "next/navigation";
+﻿export const instant = false;
+
+import { notFound } from "next/navigation";
 
 import { createAdminClient } from "@/lib/supabase/admin";
 
@@ -9,7 +11,7 @@ export default async function ResultPage({
     token: string;
   }>;
 }) {
-  const { token } = await params;
+const { token } = await params;
 
   const supabase =
     createAdminClient();
@@ -333,7 +335,7 @@ function Info({
   label: string;
   value: string;
 }) {
-  return (
+return (
     <div>
 
       <div className="text-xs text-neutral-500">
@@ -360,7 +362,7 @@ function Pillar({
   hanja?: string | null;
   highlight?: boolean;
 }) {
-  return (
+return (
     <div
       className={`rounded-2xl p-3 text-center ${
         highlight
@@ -384,3 +386,10 @@ function Pillar({
     </div>
   );
 }
+
+
+
+
+
+
+

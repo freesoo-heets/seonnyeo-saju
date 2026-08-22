@@ -1,4 +1,6 @@
-﻿import Link from "next/link";
+﻿export const instant = false;
+
+import Link from "next/link";
 import { redirect } from "next/navigation";
 
 import { createClient } from "@/lib/supabase/server";
@@ -40,7 +42,7 @@ const statusMap: Record<
 };
 
 export default async function AdminPage() {
-  const authClient = await createClient();
+const authClient = await createClient();
 
   const {
     data: { user },
@@ -320,3 +322,8 @@ function DashboardCard({
     </div>
   );
 }
+
+
+
+
+

@@ -1,4 +1,6 @@
-﻿import Link from "next/link";
+﻿export const instant = false;
+
+import Link from "next/link";
 
 import {
   notFound,
@@ -36,8 +38,7 @@ export default async function ReadingDetailPage({
     id: string;
   }>;
 }) {
-
-  const authClient =
+const authClient =
     await createClient();
 
   const {
@@ -808,8 +809,7 @@ function Info({
   label: string;
   value: string;
 }) {
-
-  return (
+return (
 
     <div>
 
@@ -849,8 +849,7 @@ function Pillar({
   highlight?:
     boolean;
 }) {
-
-  return (
+return (
 
     <div
       className={`rounded-2xl border p-3 text-center sm:p-5 ${
@@ -927,8 +926,7 @@ function PendingItem({
 }: {
   text: string;
 }) {
-
-  return (
+return (
 
     <div className="rounded-xl bg-white px-3 py-3 text-center text-sm font-medium text-neutral-600">
       {text}
@@ -936,6 +934,13 @@ function PendingItem({
 
   );
 }
+
+
+
+
+
+
+
 
 
 
