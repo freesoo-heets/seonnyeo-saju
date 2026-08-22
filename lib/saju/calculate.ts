@@ -22,7 +22,7 @@ export type SajuInput = {
   gender: Gender;
 };
 
-const hanjaMap: Record<string, string> = {
+const stemHanjaMap: Record<string, string> = {
   갑: "甲",
   을: "乙",
   병: "丙",
@@ -33,7 +33,9 @@ const hanjaMap: Record<string, string> = {
   신: "辛",
   임: "壬",
   계: "癸",
+};
 
+const branchHanjaMap: Record<string, string> = {
   자: "子",
   축: "丑",
   인: "寅",
@@ -55,13 +57,14 @@ function pillarToHanja(
     return null;
   }
 
-  return pillar
-    .split("")
-    .map(
-      (char) =>
-        hanjaMap[char] ?? char
-    )
-    .join("");
+  const stem = pillar.charAt(0);
+  const branch = pillar.charAt(1);
+
+  return `${
+    stemHanjaMap[stem] ?? stem
+  }${
+    branchHanjaMap[branch] ?? branch
+  }`;
 }
 
 function splitPillar(
@@ -453,9 +456,7 @@ export function calculateSaju(
                   stem,
 
                 hanja:
-                  hanjaMap[
-                    stem
-                  ],
+                  stemHanjaMap[stem],
 
                 element:
                   getHeavenlyStemElement(
@@ -473,9 +474,7 @@ export function calculateSaju(
                   branch,
 
                 hanja:
-                  hanjaMap[
-                    branch
-                  ],
+                  branchHanjaMap[branch],
 
                 element:
                   getEarthlyBranchElement(
@@ -584,9 +583,7 @@ export function calculateSaju(
         dayStem,
 
       hanja:
-        hanjaMap[
-          dayStem
-        ] ??
+        stemHanjaMap[dayStem] ??
         dayStem,
 
       element:
@@ -605,9 +602,7 @@ export function calculateSaju(
         dayBranch,
 
       hanja:
-        hanjaMap[
-          dayBranch
-        ],
+        branchHanjaMap[dayBranch],
     },
 
     fiveElements:
@@ -649,3 +644,6 @@ export function calculateSaju(
     },
   };
 }
+
+
+

@@ -280,21 +280,25 @@ export function analyzeTraditionalSaju({
     );
   }
 
+  const safeYear = year;
+  const safeMonth = month;
+  const safeDay = day;
+
   const dayStem =
-    day.stem;
+    safeDay.stem;
 
   const pillarBranches: Record<
     string,
     string | null
   > = {
     year:
-      year.branch,
+      safeYear.branch,
 
     month:
-      month.branch,
+      safeMonth.branch,
 
     day:
-      day.branch,
+      safeDay.branch,
 
     hour:
       hour?.branch ?? null,
@@ -308,19 +312,19 @@ export function analyzeTraditionalSaju({
     year:
       getTwelveStage(
         dayStem,
-        year.branch
+        safeYear.branch
       ),
 
     month:
       getTwelveStage(
         dayStem,
-        month.branch
+        safeMonth.branch
       ),
 
     day:
       getTwelveStage(
         dayStem,
-        day.branch
+        safeDay.branch
       ),
 
     hour:
@@ -372,17 +376,17 @@ export function analyzeTraditionalSaju({
   const hiddenStems = {
     year:
       hiddenStemInfo(
-        year.branch
+        safeYear.branch
       ),
 
     month:
       hiddenStemInfo(
-        month.branch
+        safeMonth.branch
       ),
 
     day:
       hiddenStemInfo(
-        day.branch
+        safeDay.branch
       ),
 
     hour:
@@ -442,13 +446,13 @@ export function analyzeTraditionalSaju({
   ) {
     const yearTarget =
       getGroupTarget(
-        year.branch,
+        safeYear.branch,
         type
       );
 
     const dayTarget =
       getGroupTarget(
-        day.branch,
+        safeDay.branch,
         type
       );
 
@@ -524,3 +528,4 @@ export function analyzeTraditionalSaju({
     },
   };
 }
+
