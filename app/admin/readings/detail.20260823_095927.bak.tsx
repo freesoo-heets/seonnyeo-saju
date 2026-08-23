@@ -16,8 +16,6 @@ import {
 } from "@/lib/supabase/admin";
 
 import ReadingEditor from "@/components/admin/ReadingEditor";
-import ReadingProfileEditor from "@/components/admin/ReadingProfileEditor";
-import DeleteReadingButton from "@/components/admin/DeleteReadingButton";
 import TraditionalSajuAnalysis from "@/components/admin/TraditionalSajuAnalysis";
 
 import CalculateSajuButton from "@/components/admin/CalculateSajuButton";
@@ -224,10 +222,6 @@ const authClient =
             />
 
           </div>
-
-          <ReadingProfileEditor
-            reading={reading}
-          />
 
         </section>
 
@@ -801,13 +795,6 @@ const authClient =
 
         />
 
-
-        <div className="mt-8 flex justify-end border-t border-neutral-200 pt-6">
-          <DeleteReadingButton
-            readingId={reading.id}
-            consultationNumber={reading.consultation_number}
-          />
-        </div>
       </div>
 
     </main>
@@ -947,7 +934,6 @@ return (
 
   );
 }
-
 
 
 
