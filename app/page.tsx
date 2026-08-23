@@ -1,6 +1,7 @@
 ﻿import Link from "next/link";
 
 import BrandLogo from "@/components/brand/BrandLogo";
+import InstallAppButton from "@/components/pwa/InstallAppButton";
 
 export default function Home() {
   return (
@@ -54,6 +55,7 @@ export default function Home() {
                   사주 상담 신청하기
                 </Link>
 
+                <InstallAppButton />
                 <a
                   href="#process"
                   className="flex min-h-[56px] items-center justify-center rounded-2xl border border-[#ddd4cd] bg-white px-7 text-base font-bold text-[#5f5566]"
@@ -243,3 +245,4 @@ function Step({
     </div>
   );
 }
+
