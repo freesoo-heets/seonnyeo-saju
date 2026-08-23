@@ -332,3 +332,55 @@ main div.bg-white.rounded-3xl {
 
 }
 
+
+/* ==========================================================
+   선녀사주 PWA
+   ========================================================== */
+
+html {
+  background: #f8f4ef;
+}
+
+body {
+  min-height: 100dvh;
+}
+
+/* iPhone Safe Area */
+@supports (
+  padding:
+    max(0px)
+) {
+
+  body {
+    padding-left:
+      env(safe-area-inset-left);
+
+    padding-right:
+      env(safe-area-inset-right);
+  }
+
+}
+
+/* 홈화면 설치 후 standalone */
+@media (
+  display-mode:
+    standalone
+) {
+
+  body {
+    overscroll-behavior-y:
+      none;
+  }
+
+}
+
+/* 모바일 터치 */
+button,
+a,
+input,
+textarea,
+select {
+  touch-action:
+    manipulation;
+}
+
