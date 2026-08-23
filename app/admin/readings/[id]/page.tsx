@@ -16,6 +16,7 @@ import {
 } from "@/lib/supabase/admin";
 
 import ReadingEditor from "@/components/admin/ReadingEditor";
+import InternalMemo from "@/components/admin/InternalMemo";
 import ReadingProfileEditor from "@/components/admin/ReadingProfileEditor";
 import DeleteReadingButton from "@/components/admin/DeleteReadingButton";
 import TraditionalSajuAnalysis from "@/components/admin/TraditionalSajuAnalysis";
@@ -757,6 +758,11 @@ const authClient =
           nobleman={reading.nobleman}
           sinsal={reading.sinsal}
         />
+
+        <InternalMemo
+          readingId={reading.id}
+          initialMemo={reading.internal_memo}
+        />
         <ReadingEditor
 
           readingId={
@@ -947,6 +953,7 @@ return (
 
   );
 }
+
 
 
 

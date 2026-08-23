@@ -139,3 +139,43 @@ th {
   scrollbar-width: thin;
 }
 
+
+/* ==========================================================
+   선녀사주 인쇄 / PDF
+   ========================================================== */
+
+@media print {
+
+  html,
+  body {
+    background: #ffffff !important;
+  }
+
+  body {
+    color: #111111 !important;
+  }
+
+  .result-actions {
+    display: none !important;
+  }
+
+  button {
+    display: none !important;
+  }
+
+  main {
+    padding: 0 !important;
+    background: #ffffff !important;
+  }
+
+  section {
+    break-inside: avoid;
+    box-shadow: none !important;
+  }
+
+  @page {
+    size: A4;
+    margin: 14mm;
+  }
+
+}

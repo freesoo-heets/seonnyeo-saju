@@ -8,6 +8,7 @@ import { notFound } from "next/navigation";
 import { createAdminClient } from "@/lib/supabase/admin";
 
 import ResultPinForm from "@/components/result/ResultPinForm";
+import ResultActions from "@/components/result/ResultActions";
 
 function accessValue(
   token: string,
@@ -173,6 +174,10 @@ export default async function ResultPage({
           </p>
 
         </header>
+        <ResultActions
+          customerName={reading.customer_name}
+        />
+
 
 
         <section className="mt-8 rounded-3xl bg-white p-5 shadow-sm sm:p-7">
@@ -493,3 +498,4 @@ function Pillar({
     </div>
   );
 }
+
