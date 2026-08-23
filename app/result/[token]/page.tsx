@@ -1,8 +1,30 @@
 ﻿export const instant = false;
 
+import crypto from "crypto";
+
+import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
 
 import { createAdminClient } from "@/lib/supabase/admin";
+
+import ResultPinForm from "@/components/result/ResultPinForm";
+
+function accessValue(
+  token: string,
+  pin: string
+) {
+  const secret =
+    process.env.SUPABASE_SECRET_KEY;
+
+  if (!secret) {
+    return "";
+  }
+
+  return crypto
+    .createHmac("sha256", secret)
+    .update(`${token}:${pin}`)
+    .digest("hex");
+}
 
 export default async function ResultPage({
   params,
@@ -11,7 +33,8 @@ export default async function ResultPage({
     token: string;
   }>;
 }) {
-const { token } = await params;
+  const { token } =
+    await params;
 
   const supabase =
     createAdminClient();
@@ -23,65 +46,107 @@ const { token } = await params;
     await supabase
       .from("readings")
       .select("*")
-      .eq("result_token", token)
+      .eq(
+        "result_token",
+        token
+      )
       .single();
 
   if (
     error ||
     !reading ||
-    !["completed", "delivered"].includes(reading.status)
+    !["completed", "delivered"].includes(
+      reading.status
+    )
   ) {
     notFound();
+  }
+
+  const cookieStore =
+    await cookies();
+
+  const accessCookie =
+    cookieStore.get(
+      `saju_result_${token}`
+    )?.value;
+
+  const correctAccess =
+    accessValue(
+      token,
+      reading.result_pin
+    );
+
+  if (
+    !accessCookie ||
+    accessCookie !== correctAccess
+  ) {
+    return (
+      <ResultPinForm
+        token={token}
+      />
+    );
   }
 
   const birthTime =
     reading.birth_time_unknown
       ? "출생시간 모름"
-      : `${String(reading.birth_hour).padStart(2, "0")}:${String(
+      : `${String(
+          reading.birth_hour
+        ).padStart(
+          2,
+          "0"
+        )}:${String(
           reading.birth_minute
-        ).padStart(2, "0")}`;
+        ).padStart(
+          2,
+          "0"
+        )}`;
 
   const sajuInfo =
-    reading.five_elements ?? {};
+    reading.five_elements ??
+    {};
 
   const hanja =
-    sajuInfo.hanja ?? {};
+    sajuInfo.hanja ??
+    {};
 
   const dayMaster =
-    sajuInfo.dayMaster ?? null;
+    sajuInfo.dayMaster ??
+    null;
 
   const counts =
-    sajuInfo.counts ?? {};
+    sajuInfo.counts ??
+    {};
 
   const sections = [
-    {
-      title: "전체적인 사주",
-      content: reading.general_reading,
-    },
-    {
-      title: "성격 / 기질",
-      content: reading.personality_reading,
-    },
-    {
-      title: "연애 / 결혼운",
-      content: reading.love_reading,
-    },
-    {
-      title: "재물운",
-      content: reading.money_reading,
-    },
-    {
-      title: "직업 / 사업운",
-      content: reading.career_reading,
-    },
-    {
-      title: "건강운",
-      content: reading.health_reading,
-    },
-    {
-      title: "질문에 대한 답변",
-      content: reading.question_answer,
-    },
+    [
+      "전체적인 사주",
+      reading.general_reading,
+    ],
+    [
+      "성격 / 기질",
+      reading.personality_reading,
+    ],
+    [
+      "연애 / 결혼운",
+      reading.love_reading,
+    ],
+    [
+      "재물운",
+      reading.money_reading,
+    ],
+    [
+      "직업 / 사업운",
+      reading.career_reading,
+    ],
+    [
+      "건강운",
+      reading.health_reading,
+    ],
+    [
+      "질문에 대한 답변",
+      reading.question_answer,
+    ],
   ];
 
   return (
@@ -95,7 +160,7 @@ const { token } = await params;
             
           </div>
 
-          <div className="mt-4 text-sm font-medium text-purple-600">
+          <div className="mt-4 text-sm font-bold text-purple-600">
             선녀사주
           </div>
 
@@ -104,7 +169,7 @@ const { token } = await params;
           </h1>
 
           <p className="mt-3 text-sm text-neutral-500">
-            상담번호 {reading.consultation_number}
+            {reading.consultation_number}
           </p>
 
         </header>
@@ -112,11 +177,7 @@ const { token } = await params;
 
         <section className="mt-8 rounded-3xl bg-white p-5 shadow-sm sm:p-7">
 
-          <h2 className="text-lg font-bold">
-            기본정보
-          </h2>
-
-          <div className="mt-5 grid grid-cols-2 gap-5 sm:grid-cols-4">
+          <div className="grid grid-cols-2 gap-5 sm:grid-cols-4">
 
             <Info
               label="성별"
@@ -129,13 +190,16 @@ const { token } = await params;
 
             <Info
               label="생년월일"
-              value={reading.birth_date}
+              value={
+                reading.birth_date
+              }
             />
 
             <Info
               label="달력"
               value={
-                reading.calendar_type === "solar"
+                reading.calendar_type ===
+                "solar"
                   ? "양력"
                   : reading.lunar_leap_month
                     ? "음력  윤달"
@@ -165,27 +229,43 @@ const { token } = await params;
 
               <Pillar
                 title="시주"
-                korean={reading.hour_pillar}
-                hanja={hanja.hour}
+                korean={
+                  reading.hour_pillar
+                }
+                hanja={
+                  hanja.hour
+                }
               />
 
               <Pillar
                 title="일주"
-                korean={reading.day_pillar}
-                hanja={hanja.day}
+                korean={
+                  reading.day_pillar
+                }
+                hanja={
+                  hanja.day
+                }
                 highlight
               />
 
               <Pillar
                 title="월주"
-                korean={reading.month_pillar}
-                hanja={hanja.month}
+                korean={
+                  reading.month_pillar
+                }
+                hanja={
+                  hanja.month
+                }
               />
 
               <Pillar
                 title="년주"
-                korean={reading.year_pillar}
-                hanja={hanja.year}
+                korean={
+                  reading.year_pillar
+                }
+                hanja={
+                  hanja.year
+                }
               />
 
             </div>
@@ -200,6 +280,7 @@ const { token } = await params;
                 </div>
 
                 <div className="mt-2 text-2xl font-bold">
+
                   {dayMaster.hanja}
                   {" "}
                   {dayMaster.korean}
@@ -209,6 +290,7 @@ const { token } = await params;
                     {" "}
                     {dayMaster.element}
                   </span>
+
                 </div>
 
               </div>
@@ -224,20 +306,34 @@ const { token } = await params;
 
               <div className="mt-3 grid grid-cols-5 gap-2">
 
-                {["목", "화", "토", "금", "수"].map(
-                  (element) => (
+                {[
+                  "목",
+                  "화",
+                  "토",
+                  "금",
+                  "수",
+                ].map(
+                  (
+                    element
+                  ) => (
 
                     <div
-                      key={element}
+                      key={
+                        element
+                      }
                       className="rounded-xl bg-[#faf7f2] p-3 text-center"
                     >
+
                       <div className="text-xs text-neutral-500">
                         {element}
                       </div>
 
                       <div className="mt-1 text-xl font-bold">
-                        {counts[element] ?? 0}
+                        {counts[
+                          element
+                        ] ?? 0}
                       </div>
+
                     </div>
 
                   )
@@ -271,31 +367,46 @@ const { token } = await params;
 
         <section className="mt-4 space-y-4">
 
-          {sections
-            .filter(
-              (section) =>
-                section.content?.trim()
-            )
-            .map(
-              (section) => (
+          {sections.map(
+            (
+              [
+                title,
+                content,
+              ]
+            ) => {
+
+              if (
+                !String(
+                  content ?? ""
+                ).trim()
+              ) {
+                return null;
+              }
+
+              return (
 
                 <div
-                  key={section.title}
+                  key={
+                    String(
+                      title
+                    )
+                  }
                   className="rounded-3xl bg-white p-5 shadow-sm sm:p-7"
                 >
 
                   <h2 className="text-lg font-bold">
-                    {section.title}
+                    {title}
                   </h2>
 
                   <div className="mt-4 whitespace-pre-wrap leading-8 text-neutral-700">
-                    {section.content}
+                    {content}
                   </div>
 
                 </div>
 
-              )
-            )}
+              );
+            }
+          )}
 
         </section>
 
@@ -308,7 +419,7 @@ const { token } = await params;
               선녀님의 한마디
             </div>
 
-            <div className="mt-4 whitespace-pre-wrap text-lg leading-8 text-neutral-800">
+            <div className="mt-4 whitespace-pre-wrap text-lg leading-8">
               {reading.final_message}
             </div>
 
@@ -335,9 +446,8 @@ function Info({
   label: string;
   value: string;
 }) {
-return (
+  return (
     <div>
-
       <div className="text-xs text-neutral-500">
         {label}
       </div>
@@ -345,7 +455,6 @@ return (
       <div className="mt-1 font-bold">
         {value}
       </div>
-
     </div>
   );
 }
@@ -362,7 +471,7 @@ function Pillar({
   hanja?: string | null;
   highlight?: boolean;
 }) {
-return (
+  return (
     <div
       className={`rounded-2xl p-3 text-center ${
         highlight
@@ -370,7 +479,6 @@ return (
           : "bg-[#faf7f2]"
       }`}
     >
-
       <div className="text-xs text-neutral-500">
         {title}
       </div>
@@ -382,14 +490,6 @@ return (
       <div className="mt-1 text-sm font-bold">
         {korean ?? "-"}
       </div>
-
     </div>
   );
 }
-
-
-
-
-
-
-
