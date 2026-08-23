@@ -179,3 +179,156 @@ th {
   }
 
 }
+
+/* ==========================================================
+   선녀사주 Brand System v1.9
+   ========================================================== */
+
+:root {
+  --saju-bg: #f8f4ef;
+  --saju-card: #ffffff;
+  --saju-text: #2c2434;
+  --saju-muted: #7d737f;
+  --saju-purple: #8f70a9;
+  --saju-purple-soft: #f2e9f8;
+  --saju-border: #e7dfd8;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background:
+    var(--saju-bg);
+  color:
+    var(--saju-text);
+}
+
+/* selection */
+
+::selection {
+  background: #dcc9ec;
+  color: #2f2535;
+}
+
+
+/* 폼 */
+
+input,
+textarea,
+select {
+  border-radius: 14px;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #aa8fc0 !important;
+  box-shadow:
+    0 0 0 3px rgba(170, 143, 192, 0.13);
+}
+
+
+/* 버튼 */
+
+button,
+a {
+  -webkit-tap-highlight-color:
+    transparent;
+}
+
+button {
+  transition:
+    transform 0.15s ease,
+    opacity 0.15s ease,
+    background-color 0.15s ease;
+}
+
+button:active {
+  transform: scale(0.985);
+}
+
+
+/* 모바일 입력 확대 방지 */
+
+@media (max-width: 640px) {
+
+  input,
+  textarea,
+  select {
+    font-size: 16px !important;
+  }
+
+}
+
+
+/* 카드 */
+
+.saju-card {
+  border:
+    1px solid rgba(230, 221, 214, 0.9);
+
+  border-radius:
+    24px;
+
+  background:
+    rgba(255, 255, 255, 0.92);
+
+  box-shadow:
+    0 12px 40px rgba(61, 45, 67, 0.06);
+}
+
+
+/* 관리자 / 결과 페이지의 기존 흰 카드도 통일 */
+
+main section.bg-white,
+main div.bg-white.rounded-3xl {
+  border:
+    1px solid rgba(232, 224, 217, 0.75);
+}
+
+
+/* 스크롤바 */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background:
+    #d4c8d9;
+
+  border-radius:
+    10px;
+}
+
+::-webkit-scrollbar-track {
+  background:
+    transparent;
+}
+
+
+/* 결과 페이지 출력 */
+
+@media print {
+
+  body {
+    font-family:
+      Arial,
+      "Malgun Gothic",
+      sans-serif;
+  }
+
+  section {
+    border:
+      1px solid #dddddd !important;
+  }
+
+}
+

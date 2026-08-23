@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
@@ -9,8 +9,8 @@ const defaultUrl = process.env.VERCEL_URL
 
 export const metadata: Metadata = {
   metadataBase: new URL(defaultUrl),
-  title: "Next.js and Supabase Starter Kit",
-  description: "The fastest way to build apps with Next.js and Supabase",
+  title: "선녀사주 | 나의 사주 이야기",
+  description: "생년월일과 출생시간을 바탕으로 만세력을 확인하고 선녀님의 사주풀이를 받아보세요.",
 };
 
 const geistSans = Geist({
@@ -39,3 +39,4 @@ export default function RootLayout({
     </html>
   );
 }
+
