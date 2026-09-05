@@ -1,9 +1,39 @@
+
+import {
+  checkRateLimit,
+  getClientIp,
+  hashRateLimitValue,
+  rateLimitResponse,
+} from "@/lib/security/rate-limit";
 ﻿import { NextResponse } from "next/server";
 
 import { createAdminClient } from "@/lib/supabase/admin";
 import { calculateSaju } from "@/lib/saju/calculate";
 
 export async function POST(request: Request) {
+
+  // SECURITY_READING_RATE_LIMIT
+  const readingIp = getClientIp(request);
+
+  const readingIpHash =
+    hashRateLimitValue(readingIp);
+
+  const readingLimit =
+    await checkRateLimit({
+      key:
+        `reading:ip:${readingIpHash}`,
+      limit: 5,
+      windowSeconds: 600,
+    });
+
+  if (!readingLimit.allowed) {
+    return rateLimitResponse(
+      "상담 신청이 너무 많습니다. 잠시 후 다시 시도해주세요.",
+      readingLimit.resetAt
+    );
+  }
+
+
   try {
     const body = await request.json();
 

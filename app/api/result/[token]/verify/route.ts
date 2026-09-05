@@ -1,3 +1,10 @@
+
+import {
+  checkRateLimit,
+  getClientIp,
+  hashRateLimitValue,
+  rateLimitResponse,
+} from "@/lib/security/rate-limit";
 ﻿import crypto from "crypto";
 
 import { NextResponse } from "next/server";
@@ -30,6 +37,67 @@ export async function POST(
     }>;
   }
 ) {
+
+  // SECURITY_RESULT_PIN_RATE_LIMIT
+  const pinIp =
+    getClientIp(request);
+
+  const pinIpHash =
+    hashRateLimitValue(
+      pinIp
+    );
+
+  let pinToken =
+    "unknown";
+
+  try {
+
+    const contextAny =
+      arguments[1];
+
+    if (
+      contextAny?.params
+    ) {
+
+      const params =
+        await contextAny.params;
+
+      if (
+        params?.token
+      ) {
+        pinToken =
+          String(
+            params.token
+          );
+      }
+    }
+
+  } catch {
+    // token을 가져오지 못하면
+    // IP 기준으로만 제한합니다.
+  }
+
+  const pinTokenHash =
+    hashRateLimitValue(
+      pinToken
+    );
+
+  const pinLimit =
+    await checkRateLimit({
+      key:
+        `result-pin:${pinTokenHash}:${pinIpHash}`,
+      limit: 8,
+      windowSeconds: 600,
+    });
+
+  if (!pinLimit.allowed) {
+    return rateLimitResponse(
+      "비밀번호 확인 시도가 너무 많습니다. 잠시 후 다시 시도해주세요.",
+      pinLimit.resetAt
+    );
+  }
+
+
   try {
     const { token } =
       await context.params;
