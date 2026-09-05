@@ -1,3 +1,5 @@
+import { redirect as authRedirect } from "next/navigation";
+import { requireAdmin } from "@/lib/auth/permissions";
 ﻿export const instant = false;
 
 import Link from "next/link";
@@ -41,6 +43,13 @@ export default async function ReadingDetailPage({
     id: string;
   }>;
 }) {
+
+  const adminAccess = await requireAdmin();
+
+  if (!adminAccess) {
+    authRedirect("/auth/login");
+  }
+
 const authClient =
     await createClient();
 

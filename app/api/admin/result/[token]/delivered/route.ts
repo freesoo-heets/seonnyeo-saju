@@ -1,3 +1,4 @@
+import { requireAdmin } from "@/lib/auth/permissions";
 ﻿import { NextResponse } from "next/server";
 
 import { createClient } from "@/lib/supabase/server";
@@ -11,6 +12,20 @@ export async function POST(
     }>;
   }
 ) {
+
+  const adminAccess = await requireAdmin();
+
+  if (!adminAccess) {
+    return Response.json(
+      {
+        error: "관리자 권한이 필요합니다.",
+      },
+      {
+        status: 403,
+      }
+    );
+  }
+
   const authClient =
     await createClient();
 

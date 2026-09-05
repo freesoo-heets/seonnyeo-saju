@@ -8,6 +8,7 @@ const defaultUrl = process.env.VERCEL_URL
   : "http://localhost:3000";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://seonnyeo-saju.vercel.app"),
   title: {
     default: "선녀사주",
     template: "%s | 선녀사주",

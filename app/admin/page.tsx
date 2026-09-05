@@ -1,3 +1,5 @@
+import { redirect as authRedirect } from "next/navigation";
+import { requireAdmin } from "@/lib/auth/permissions";
 ﻿export const instant = false;
 
 import { redirect } from "next/navigation";
@@ -9,6 +11,13 @@ import LogoutButton from "@/components/admin/LogoutButton";
 import AdminReadingsList from "@/components/admin/AdminReadingsList";
 
 export default async function AdminPage() {
+
+  const adminAccess = await requireAdmin();
+
+  if (!adminAccess) {
+    authRedirect("/auth/login");
+  }
+
 
   const authClient =
     await createClient();

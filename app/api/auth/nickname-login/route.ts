@@ -114,7 +114,7 @@ export async function POST(request: Request) {
       redirectTo:
         profile.role === "admin"
           ? "/admin"
-          : "/protected",
+          : "/member",
     });
 
   } catch (error) {
@@ -134,3 +134,4 @@ export async function POST(request: Request) {
     );
   }
 }
+
