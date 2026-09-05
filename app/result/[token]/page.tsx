@@ -1,4 +1,4 @@
-﻿export const instant = false;
+export const instant = false;
 
 import crypto from "crypto";
 
@@ -151,7 +151,7 @@ export default async function ResultPage({
   ];
 
   return (
-    <main className="min-h-screen bg-[#faf7f2] px-4 py-8 text-neutral-900 sm:px-6">
+    <main className="min-h-screen bg-[#f7f1e8] px-4 py-8 text-neutral-900 sm:px-6">
 
       <div className="mx-auto max-w-3xl">
 
@@ -161,7 +161,7 @@ export default async function ResultPage({
             
           </div>
 
-          <div className="mt-4 text-sm font-bold text-purple-600">
+          <div className="mt-4 text-sm font-bold text-[#795d72]">
             선녀사주
           </div>
 
@@ -226,7 +226,7 @@ export default async function ResultPage({
 
           <section className="mt-4 rounded-3xl bg-white p-5 shadow-sm sm:p-7">
 
-            <div className="text-sm font-bold text-purple-600">
+            <div className="text-sm font-bold text-[#795d72]">
               사주 원국
             </div>
 
@@ -280,7 +280,7 @@ export default async function ResultPage({
 
               <div className="mt-6 rounded-2xl bg-purple-50 p-5">
 
-                <div className="text-xs font-bold text-purple-600">
+                <div className="text-xs font-bold text-[#795d72]">
                   일간
                 </div>
 
@@ -326,7 +326,7 @@ export default async function ResultPage({
                       key={
                         element
                       }
-                      className="rounded-xl bg-[#faf7f2] p-3 text-center"
+                      className="rounded-xl bg-[#f7f1e8] p-3 text-center"
                     >
 
                       <div className="text-xs text-neutral-500">
@@ -361,7 +361,7 @@ export default async function ResultPage({
               상담 질문
             </h2>
 
-            <div className="mt-4 whitespace-pre-wrap rounded-2xl bg-[#faf7f2] p-5 leading-7 text-neutral-700">
+            <div className="mt-4 whitespace-pre-wrap rounded-2xl bg-[#f7f1e8] p-5 leading-7 text-neutral-700">
               {reading.question}
             </div>
 
@@ -481,7 +481,7 @@ function Pillar({
       className={`rounded-2xl p-3 text-center ${
         highlight
           ? "bg-purple-50"
-          : "bg-[#faf7f2]"
+          : "bg-[#f7f1e8]"
       }`}
     >
       <div className="text-xs text-neutral-500">

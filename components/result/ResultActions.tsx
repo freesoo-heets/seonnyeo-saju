@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import {
   useState,
@@ -99,7 +99,7 @@ export default function ResultActions({
         <button
           type="button"
           onClick={share}
-          className="rounded-2xl bg-purple-600 py-3.5 text-sm font-bold text-white"
+          className="rounded-2xl border border-[#65475e] bg-[#604359] py-3.5 text-sm font-bold text-white shadow-[0_7px_20px_rgba(78,51,70,0.16)] hover:bg-[#52394c]"
         >
           결과 공유
         </button>
@@ -110,7 +110,7 @@ export default function ResultActions({
           onClick={
             printResult
           }
-          className="rounded-2xl border border-neutral-200 bg-white py-3.5 text-sm font-bold text-neutral-700"
+          className="rounded-2xl border border-[#d8cbbb] bg-[#fffaf3] py-3.5 text-sm font-bold text-[#6c5c64] hover:border-[#bda67e] hover:bg-white"
         >
           PDF / 인쇄
         </button>

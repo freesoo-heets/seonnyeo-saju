@@ -68,8 +68,8 @@
 }
 
 /* =========================================================
-   선녀사주 - 가독성 보정
-   밝은 화면에서 텍스트/입력값이 확실히 보이도록 설정
+   ?좊??ъ＜ - 媛?낆꽦 蹂댁젙
+   諛앹? ?붾㈃?먯꽌 ?띿뒪???낅젰媛믪씠 ?뺤떎??蹂댁씠?꾨줉 ?ㅼ젙
    ========================================================= */
 
 html {
@@ -81,12 +81,12 @@ body {
   color: #262626;
 }
 
-/* 일반 텍스트 */
+/* ?쇰컲 ?띿뒪??*/
 main {
   color: #262626;
 }
 
-/* 입력값 */
+/* ?낅젰媛?*/
 input,
 textarea,
 select {
@@ -108,18 +108,18 @@ select option {
   background: #ffffff;
 }
 
-/* 버튼 텍스트가 흐려지는 현상 방지 */
+/* 踰꾪듉 ?띿뒪?멸? ?먮젮吏???꾩긽 諛⑹? */
 button {
   opacity: 1;
 }
 
-/* 모바일 Safari */
+/* 紐⑤컮??Safari */
 input[type="date"] {
   color: #262626 !important;
   -webkit-text-fill-color: #262626;
 }
 
-/* 자동완성 배경/글자 보정 */
+/* ?먮룞?꾩꽦 諛곌꼍/湲??蹂댁젙 */
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus {
@@ -127,21 +127,21 @@ input:-webkit-autofill:focus {
   box-shadow: 0 0 0px 1000px #ffffff inset !important;
 }
 
-/* 표/카드 기본 가독성 */
+/* ??移대뱶 湲곕낯 媛?낆꽦 */
 table,
 td,
 th {
   color: #262626;
 }
 
-/* 스크롤바가 있는 대운 영역 */
+/* ?ㅽ겕濡ㅻ컮媛 ?덈뒗 ????곸뿭 */
 .overflow-x-auto {
   scrollbar-width: thin;
 }
 
 
 /* ==========================================================
-   선녀사주 인쇄 / PDF
+   ?좊??ъ＜ ?몄뇙 / PDF
    ========================================================== */
 
 @media print {
@@ -181,7 +181,7 @@ th {
 }
 
 /* ==========================================================
-   선녀사주 Brand System v1.9
+   ?좊??ъ＜ Brand System v1.9
    ========================================================== */
 
 :root {
@@ -213,7 +213,7 @@ body {
 }
 
 
-/* 폼 */
+/* ??*/
 
 input,
 textarea,
@@ -234,7 +234,7 @@ select:focus {
 }
 
 
-/* 버튼 */
+/* 踰꾪듉 */
 
 button,
 a {
@@ -254,7 +254,7 @@ button:active {
 }
 
 
-/* 모바일 입력 확대 방지 */
+/* 紐⑤컮???낅젰 ?뺣? 諛⑹? */
 
 @media (max-width: 640px) {
 
@@ -267,7 +267,7 @@ button:active {
 }
 
 
-/* 카드 */
+/* 移대뱶 */
 
 .saju-card {
   border:
@@ -284,7 +284,7 @@ button:active {
 }
 
 
-/* 관리자 / 결과 페이지의 기존 흰 카드도 통일 */
+/* 愿由ъ옄 / 寃곌낵 ?섏씠吏??湲곗〈 ??移대뱶???듭씪 */
 
 main section.bg-white,
 main div.bg-white.rounded-3xl {
@@ -293,7 +293,7 @@ main div.bg-white.rounded-3xl {
 }
 
 
-/* 스크롤바 */
+/* ?ㅽ겕濡ㅻ컮 */
 
 ::-webkit-scrollbar {
   width: 8px;
@@ -314,7 +314,7 @@ main div.bg-white.rounded-3xl {
 }
 
 
-/* 결과 페이지 출력 */
+/* 寃곌낵 ?섏씠吏 異쒕젰 */
 
 @media print {
 
@@ -334,7 +334,7 @@ main div.bg-white.rounded-3xl {
 
 
 /* ==========================================================
-   선녀사주 PWA
+   ?좊??ъ＜ PWA
    ========================================================== */
 
 html {
@@ -361,7 +361,7 @@ body {
 
 }
 
-/* 홈화면 설치 후 standalone */
+/* ?덊솕硫??ㅼ튂 ??standalone */
 @media (
   display-mode:
     standalone
@@ -374,7 +374,7 @@ body {
 
 }
 
-/* 모바일 터치 */
+/* 紐⑤컮???곗튂 */
 button,
 a,
 input,
@@ -384,3 +384,428 @@ select {
     manipulation;
 }
 
+
+/* === SEONNYEO FINAL UI START === */
+
+/* =========================================================
+   SEONNYEO SAJU - FINAL DESIGN SYSTEM
+   사주  선녀  한지  달빛  금빛
+========================================================= */
+
+:root {
+  --sj-bg: #f7f1e8;
+  --sj-paper: #fffdf9;
+  --sj-paper-2: #fbf7f1;
+
+  --sj-purple: #604359;
+  --sj-purple-dark: #4e3548;
+  --sj-purple-light: #876d82;
+
+  --sj-gold: #b49764;
+  --sj-gold-light: #d9c59d;
+
+  --sj-ink: #3d3338;
+  --sj-text: #61565a;
+  --sj-muted: #91857f;
+
+  --sj-border: #dfd2c1;
+  --sj-border-soft: #ebe1d5;
+
+  --sj-red: #995d5d;
+  --sj-green: #587460;
+
+  --sj-shadow:
+    0 12px 40px rgba(70, 47, 60, 0.07);
+
+  --sj-shadow-hover:
+    0 18px 50px rgba(70, 47, 60, 0.11);
+}
+
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+body {
+  background:
+    radial-gradient(
+      circle at 5% 4%,
+      rgba(134, 102, 131, .11),
+      transparent 27rem
+    ),
+    radial-gradient(
+      circle at 96% 14%,
+      rgba(190, 156, 92, .12),
+      transparent 25rem
+    ),
+    #f7f1e8;
+
+  color: var(--sj-ink);
+}
+
+
+/* =========================================================
+   TYPOGRAPHY
+========================================================= */
+
+h1,
+h2,
+h3,
+h4 {
+  color: var(--sj-ink);
+}
+
+h1 {
+  letter-spacing: -.035em;
+}
+
+h2 {
+  letter-spacing: -.025em;
+}
+
+p {
+  word-break: keep-all;
+}
+
+
+/* =========================================================
+   EXISTING WHITE CARDS
+   기존 페이지를 자동으로 선녀사주 카드로 변환
+========================================================= */
+
+.rounded-3xl.bg-white,
+.rounded-2xl.bg-white,
+.rounded-xl.bg-white {
+  border-color: var(--sj-border) !important;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,253,249,.98),
+      rgba(252,248,242,.96)
+    ) !important;
+
+  box-shadow: var(--sj-shadow) !important;
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+input:not([type="checkbox"]):not([type="radio"]),
+textarea,
+select {
+  border: 1px solid #d9ccbc !important;
+
+  background:
+    rgba(255,253,249,.97) !important;
+
+  color: #40363b !important;
+
+  border-radius: 14px;
+
+  transition:
+    border-color .16s ease,
+    box-shadow .16s ease,
+    background-color .16s ease;
+}
+
+input:not([type="checkbox"]):not([type="radio"]):hover,
+textarea:hover,
+select:hover {
+  border-color: #c9b8a5 !important;
+}
+
+input:not([type="checkbox"]):not([type="radio"]):focus,
+textarea:focus,
+select:focus {
+  border-color: #8b6d84 !important;
+
+  outline: none !important;
+
+  box-shadow:
+    0 0 0 4px rgba(104,73,96,.09) !important;
+}
+
+textarea {
+  line-height: 1.75;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #b3a7a0 !important;
+}
+
+
+/* =========================================================
+   LABEL
+========================================================= */
+
+label > span:first-child {
+  color: #665960;
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   PURPLE COLOR CONVERSION
+========================================================= */
+
+.text-purple-600,
+.text-purple-500 {
+  color: #795d72 !important;
+}
+
+.bg-purple-600 {
+  background-color: #604359 !important;
+}
+
+.border-purple-400 {
+  border-color: #90748a !important;
+}
+
+
+/* =========================================================
+   NEUTRAL DARK BUTTON -> SEONNYEO PURPLE
+========================================================= */
+
+button.bg-neutral-900,
+a.bg-neutral-900 {
+  border: 1px solid #65475e !important;
+
+  background:
+    linear-gradient(
+      135deg,
+      #674960,
+      #55394e
+    ) !important;
+
+  color: white !important;
+
+  box-shadow:
+    0 7px 20px rgba(78,51,70,.16);
+}
+
+button.bg-neutral-900:hover,
+a.bg-neutral-900:hover {
+  background:
+    linear-gradient(
+      135deg,
+      #593e52,
+      #4d3447
+    ) !important;
+}
+
+
+/* =========================================================
+   BUTTON QUALITY
+========================================================= */
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:not(:disabled) {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+button.rounded-2xl,
+button.rounded-xl,
+a.rounded-2xl,
+a.rounded-xl {
+  transition:
+    transform .16s ease,
+    box-shadow .16s ease,
+    background-color .16s ease,
+    border-color .16s ease;
+}
+
+
+/* =========================================================
+   SECTION CARD DECORATION
+========================================================= */
+
+main section.rounded-3xl {
+  position: relative;
+  overflow: hidden;
+}
+
+main section.rounded-3xl::before {
+  content: "";
+
+  position: absolute;
+  top: 0;
+  left: 12%;
+  right: 12%;
+
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(181,151,98,.45),
+      transparent
+    );
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+thead {
+  background: #f5eee5 !important;
+}
+
+th {
+  color: #81736c !important;
+  font-size: .75rem;
+}
+
+td {
+  color: #5e5257;
+}
+
+tbody tr {
+  transition: background-color .15s ease;
+}
+
+tbody tr:hover {
+  background: #fcf8f2;
+}
+
+
+/* =========================================================
+   SAJU DATA BLOCK
+========================================================= */
+
+.saju-grid,
+.manseryeok-grid {
+  overflow: hidden;
+
+  border: 1px solid var(--sj-border);
+
+  border-radius: 20px;
+
+  background: #fffdf9;
+}
+
+
+/* =========================================================
+   RESULT PAGE PRINT
+========================================================= */
+
+@media print {
+
+  body {
+    background: white !important;
+  }
+
+  .result-actions {
+    display: none !important;
+  }
+
+  main {
+    background: white !important;
+  }
+
+  section {
+    break-inside: avoid;
+    box-shadow: none !important;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 640px) {
+
+  body {
+    background:
+      radial-gradient(
+        circle at 10% 2%,
+        rgba(135,104,132,.09),
+        transparent 18rem
+      ),
+      #f7f1e8;
+  }
+
+  main {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  input,
+  textarea,
+  select {
+    font-size: 16px !important;
+  }
+
+  section.rounded-3xl {
+    border-radius: 22px !important;
+  }
+
+}
+
+
+/* =========================================================
+   RESULT / READING CONTENT
+========================================================= */
+
+.whitespace-pre-wrap {
+  line-height: 1.9;
+  color: #5b5055;
+}
+
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+@media (min-width: 768px) {
+
+  ::-webkit-scrollbar {
+    width: 9px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #f1eae2;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border: 2px solid #f1eae2;
+    border-radius: 999px;
+    background: #c5b6aa;
+  }
+
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+:focus-visible {
+  outline: 2px solid rgba(96,67,89,.5);
+  outline-offset: 3px;
+}
+
+
+/* === SEONNYEO FINAL UI END === */

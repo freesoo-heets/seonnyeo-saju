@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
 
@@ -167,7 +167,7 @@ export default function ReadingEditor({
 
         <div>
 
-          <div className="text-sm text-purple-500">
+          <div className="text-sm text-[#80647a]">
              선녀님 작성영역
           </div>
 

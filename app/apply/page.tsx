@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { FormEvent, useState } from "react";
 
@@ -94,7 +94,7 @@ export default function ApplyPage() {
 
   if (completed) {
     return (
-      <main className="min-h-screen bg-[#faf7f2] px-5 py-12">
+      <main className="min-h-screen bg-[#f7f1e8] px-5 py-12">
         <div className="mx-auto max-w-md">
           <div className="rounded-3xl bg-white p-8 text-center shadow-sm">
             <div className="mb-5 text-5xl"></div>
@@ -109,7 +109,7 @@ export default function ApplyPage() {
               사주풀이를 진행합니다.
             </p>
 
-            <div className="mt-8 rounded-2xl bg-[#faf7f2] p-5">
+            <div className="mt-8 rounded-2xl bg-[#f7f1e8] p-5">
               <div className="text-sm text-neutral-500">
                 상담번호
               </div>
@@ -136,7 +136,7 @@ export default function ApplyPage() {
   }
 
   return (
-    <main className="min-h-screen bg-[#faf7f2] px-5 py-8">
+    <main className="min-h-screen bg-[#f7f1e8] px-5 py-8">
       <div className="mx-auto w-full max-w-lg">
 
         <header className="mb-8 text-center">

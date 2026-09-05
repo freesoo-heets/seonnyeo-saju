@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { FormEvent, useState } from "react";
 
@@ -51,7 +51,7 @@ export default function ResultPinForm({
   }
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-[#faf7f2] px-5 text-neutral-900">
+    <main className="flex min-h-screen items-center justify-center bg-[#f7f1e8] px-5 text-neutral-900">
       <div className="w-full max-w-md">
 
         <div className="text-center">
@@ -59,7 +59,7 @@ export default function ResultPinForm({
             
           </div>
 
-          <div className="mt-4 text-sm font-bold text-purple-600">
+          <div className="mt-4 text-sm font-bold text-[#795d72]">
             선녀사주
           </div>
 
@@ -76,7 +76,7 @@ export default function ResultPinForm({
 
         <form
           onSubmit={submit}
-          className="mt-8 rounded-3xl bg-white p-6 shadow-sm"
+          className="mt-8 rounded-[28px] border border-[#ddcfbd] bg-[rgba(255,253,249,0.96)] p-6 shadow-[0_18px_55px_rgba(68,45,59,0.09)]"
         >
           <label className="block">
 
@@ -97,7 +97,7 @@ export default function ResultPinForm({
                 )
               }
               placeholder="   "
-              className="mt-3 w-full rounded-2xl border border-neutral-200 bg-white px-4 py-4 text-center text-2xl font-bold tracking-[0.5em] text-neutral-900 outline-none focus:border-purple-400"
+              className="mt-3 w-full rounded-2xl border border-neutral-200 bg-white px-4 py-4 text-center text-2xl font-bold tracking-[0.5em] text-neutral-900 outline-none focus:border-[#8d7087] focus:ring-4 focus:ring-[#806078]/10"
             />
 
           </label>
@@ -111,7 +111,7 @@ export default function ResultPinForm({
           <button
             type="submit"
             disabled={loading || pin.length !== 4}
-            className="mt-5 w-full rounded-2xl bg-neutral-900 py-4 font-bold text-white disabled:opacity-40"
+            className="mt-5 w-full rounded-2xl border border-[#65475e] bg-[#604359] py-4 font-bold text-white shadow-[0_8px_22px_rgba(79,52,71,0.18)] hover:bg-[#52394c] disabled:opacity-40"
           >
             {loading
               ? "확인 중..."
