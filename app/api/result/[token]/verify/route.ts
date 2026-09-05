@@ -1,3 +1,6 @@
+import crypto from "crypto";
+
+import { NextResponse } from "next/server";
 
 import {
   checkRateLimit,
@@ -5,9 +8,7 @@ import {
   hashRateLimitValue,
   rateLimitResponse,
 } from "@/lib/security/rate-limit";
-﻿import crypto from "crypto";
 
-import { NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 
 function createAccessValue(
@@ -19,7 +20,7 @@ function createAccessValue(
 
   if (!secret) {
     throw new Error(
-      "SUPABASE_SECRET_KEY가 없습니다."
+      "SUPABASE_SECRET_KEY가 설정되어 있지 않습니다."
     );
   }
 
@@ -37,81 +38,20 @@ export async function POST(
     }>;
   }
 ) {
-
-  // SECURITY_RESULT_PIN_RATE_LIMIT
-  const pinIp =
-    getClientIp(request);
-
-  const pinIpHash =
-    hashRateLimitValue(
-      pinIp
-    );
-
-  let pinToken =
-    "unknown";
-
   try {
-
-    const contextAny =
-      arguments[1];
-
-    if (
-      contextAny?.params
-    ) {
-
-      const params =
-        await contextAny.params;
-
-      if (
-        params?.token
-      ) {
-        pinToken =
-          String(
-            params.token
-          );
-      }
-    }
-
-  } catch {
-    // token을 가져오지 못하면
-    // IP 기준으로만 제한합니다.
-  }
-
-  const pinTokenHash =
-    hashRateLimitValue(
-      pinToken
-    );
-
-  const pinLimit =
-    await checkRateLimit({
-      key:
-        `result-pin:${pinTokenHash}:${pinIpHash}`,
-      limit: 8,
-      windowSeconds: 600,
-    });
-
-  if (!pinLimit.allowed) {
-    return rateLimitResponse(
-      "비밀번호 확인 시도가 너무 많습니다. 잠시 후 다시 시도해주세요.",
-      pinLimit.resetAt
-    );
-  }
-
-
-  try {
+    /*
+     * -------------------------------------------------------
+     * 1. URL token 확인
+     * -------------------------------------------------------
+     */
     const { token } =
       await context.params;
 
-    const body =
-      await request.json();
-
-    const pin =
-      String(body.pin ?? "");
-
-    if (!/^\d{4}$/.test(pin)) {
+    if (!token) {
       return NextResponse.json(
         {
-          error: "4자리 확인번호를 입력해주세요.",
+          error:
+            "잘못된 결과 링크입니다.",
         },
         {
           status: 400,
@@ -119,6 +59,72 @@ export async function POST(
       );
     }
 
+    /*
+     * -------------------------------------------------------
+     * 2. Rate Limit
+     *
+     * 같은 결과 링크 + 같은 IP 기준
+     * 10분 동안 최대 8회
+     * -------------------------------------------------------
+     */
+    const clientIp =
+      getClientIp(request);
+
+    const ipHash =
+      hashRateLimitValue(
+        clientIp
+      );
+
+    const tokenHash =
+      hashRateLimitValue(
+        token
+      );
+
+    const pinLimit =
+      await checkRateLimit({
+        key:
+          `result-pin:${tokenHash}:${ipHash}`,
+        limit: 8,
+        windowSeconds: 600,
+      });
+
+    if (!pinLimit.allowed) {
+      return rateLimitResponse(
+        "비밀번호 확인 시도가 너무 많습니다. 잠시 후 다시 시도해주세요.",
+        pinLimit.resetAt
+      );
+    }
+
+    /*
+     * -------------------------------------------------------
+     * 3. PIN 형식 확인
+     * -------------------------------------------------------
+     */
+    const body =
+      await request.json();
+
+    const pin =
+      String(
+        body?.pin ?? ""
+      ).trim();
+
+    if (!/^\d{4}$/.test(pin)) {
+      return NextResponse.json(
+        {
+          error:
+            "4자리 확인번호를 입력해주세요.",
+        },
+        {
+          status: 400,
+        }
+      );
+    }
+
+    /*
+     * -------------------------------------------------------
+     * 4. 상담 결과 조회
+     * -------------------------------------------------------
+     */
     const supabase =
       createAdminClient();
 
@@ -135,7 +141,7 @@ export async function POST(
           "result_token",
           token
         )
-        .single();
+        .maybeSingle();
 
     if (
       error ||
@@ -155,6 +161,11 @@ export async function POST(
       );
     }
 
+    /*
+     * -------------------------------------------------------
+     * 5. PIN 검증
+     * -------------------------------------------------------
+     */
     if (
       reading.result_pin !== pin
     ) {
@@ -169,6 +180,11 @@ export async function POST(
       );
     }
 
+    /*
+     * -------------------------------------------------------
+     * 6. 결과 열람 Cookie 발급
+     * -------------------------------------------------------
+     */
     const response =
       NextResponse.json({
         success: true,
@@ -186,8 +202,10 @@ export async function POST(
           process.env.NODE_ENV ===
           "production",
         sameSite: "lax",
-        maxAge: 60 * 60 * 24 * 7,
-        path: `/result/${token}`,
+        maxAge:
+          60 * 60 * 24 * 7,
+        path:
+          `/result/${token}`,
       }
     );
 
@@ -195,7 +213,7 @@ export async function POST(
 
   } catch (error) {
     console.error(
-      "PIN verify error:",
+      "[result-pin] verify error:",
       error
     );
 
