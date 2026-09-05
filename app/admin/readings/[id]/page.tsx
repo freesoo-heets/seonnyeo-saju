@@ -1,6 +1,6 @@
 import { redirect as authRedirect } from "next/navigation";
 import { requireAdmin } from "@/lib/auth/permissions";
-﻿export const instant = false;
+export const instant = false;
 
 import Link from "next/link";
 
@@ -25,6 +25,7 @@ import TraditionalSajuAnalysis from "@/components/admin/TraditionalSajuAnalysis"
 
 import CalculateSajuButton from "@/components/admin/CalculateSajuButton";
 import ResultLinkButton from "@/components/admin/ResultLinkButton";
+import { ElementBadge, ElementValue } from "@/components/saju/FiveElementDisplay";
 
 
 const elementOrder = [
@@ -154,7 +155,7 @@ const authClient =
 
   return (
 
-    <main className="min-h-screen bg-[#faf7f2] px-4 py-6 text-neutral-900 sm:px-6">
+    <main className="relative min-h-screen overflow-hidden bg-[#f7f1e8] px-4 py-6 text-[#3f343a] sm:px-6">
 
       <div className="mx-auto max-w-5xl">
 
@@ -390,13 +391,13 @@ const authClient =
 
                   <div className="mt-2 flex flex-wrap items-baseline gap-2">
 
-                    <span className="text-3xl font-bold text-neutral-950">
+                    <ElementValue element={dayMaster.element} className="text-3xl font-bold">
                       {dayMaster.hanja}
-                    </span>
+                    </ElementValue>
 
-                    <span className="text-xl font-bold text-neutral-900">
+                    <ElementValue element={dayMaster.element} className="text-xl font-bold">
                       {dayMaster.korean}
-                    </span>
+                    </ElementValue>
 
                     <span className="text-sm font-medium text-neutral-600">
                       {dayMaster.yinYang}
@@ -426,24 +427,11 @@ const authClient =
                       element
                     ) => (
 
-                      <div
-                        key={
-                          element
-                        }
-                        className="rounded-2xl bg-[#faf7f2] p-3 text-center"
-                      >
-
-                        <div className="text-sm font-medium text-neutral-600">
-                          {element}
-                        </div>
-
-                        <div className="mt-1 text-2xl font-bold text-neutral-950">
-                          {counts[
-                            element
-                          ] ?? 0}
-                        </div>
-
-                      </div>
+                      <ElementBadge
+                        key={element}
+                        element={element}
+                        count={counts[element] ?? 0}
+                      />
 
                     )
                   )}
@@ -893,10 +881,12 @@ return (
 
       <div className="mt-3">
 
-        <div className="text-2xl font-bold text-neutral-950 sm:text-3xl">
-          {details?.stem?.hanja ??
-            "-"}
-        </div>
+        <ElementValue
+          element={details?.stem?.element}
+          className="text-2xl font-bold sm:text-3xl"
+        >
+          {details?.stem?.hanja ?? "-"}
+        </ElementValue>
 
         <div className="mt-1 text-xs font-medium text-neutral-600">
           {details?.stem
@@ -910,10 +900,12 @@ return (
 
       <div>
 
-        <div className="text-2xl font-bold text-neutral-950 sm:text-3xl">
-          {details?.branch?.hanja ??
-            "-"}
-        </div>
+        <ElementValue
+          element={details?.branch?.element}
+          className="text-2xl font-bold sm:text-3xl"
+        >
+          {details?.branch?.hanja ?? "-"}
+        </ElementValue>
 
         <div className="mt-1 text-xs font-medium text-neutral-600">
           {details?.branch

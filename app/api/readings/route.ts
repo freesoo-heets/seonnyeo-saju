@@ -5,12 +5,23 @@ import {
   hashRateLimitValue,
   rateLimitResponse,
 } from "@/lib/security/rate-limit";
-﻿import { NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
 import { createAdminClient } from "@/lib/supabase/admin";
+import { createClient } from "@/lib/supabase/server";
 import { calculateSaju } from "@/lib/saju/calculate";
 
 export async function POST(request: Request) {
+  const authClient = await createClient();
+  const { data: { user } } = await authClient.auth.getUser();
+
+  if (!user) {
+    return NextResponse.json(
+      { error: "상담 신청은 로그인 후 이용할 수 있습니다." },
+      { status: 401 },
+    );
+  }
+
 
   // SECURITY_READING_RATE_LIMIT
   const readingIp = getClientIp(request);

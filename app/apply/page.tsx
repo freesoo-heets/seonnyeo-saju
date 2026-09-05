@@ -94,12 +94,12 @@ export default function ApplyPage() {
 
   if (completed) {
     return (
-      <main className="min-h-screen bg-[#f7f1e8] px-5 py-12">
+      <main className="relative min-h-screen overflow-hidden bg-[#f7f1e8] px-4 py-10 text-[#3f343a] sm:px-6">
         <div className="mx-auto max-w-md">
           <div className="rounded-3xl bg-white p-8 text-center shadow-sm">
             <div className="mb-5 text-5xl"></div>
 
-            <h1 className="text-2xl font-bold text-neutral-800">
+            <h1 className="font-serif text-2xl font-semibold text-[#493943]">
               상담 접수가 완료되었습니다
             </h1>
 
@@ -109,7 +109,7 @@ export default function ApplyPage() {
               사주풀이를 진행합니다.
             </p>
 
-            <div className="mt-8 rounded-2xl bg-[#f7f1e8] p-5">
+            <div className="mt-8 rounded-2xl border border-[#e3d7c8] bg-[#fbf7f1] p-5">
               <div className="text-sm text-neutral-500">
                 상담번호
               </div>
@@ -136,25 +136,25 @@ export default function ApplyPage() {
   }
 
   return (
-    <main className="min-h-screen bg-[#f7f1e8] px-5 py-8">
-      <div className="mx-auto w-full max-w-lg">
+    <main className="relative min-h-screen overflow-hidden bg-[#f7f1e8] px-4 py-8 text-[#3f343a] sm:px-6">
+      <div className="relative mx-auto w-full max-w-2xl">
 
-        <header className="mb-8 text-center">
+        <header className="mb-8 text-center sm:mb-10">
           <div className="text-5xl"></div>
 
-          <h1 className="mt-4 text-3xl font-bold text-neutral-800">
+          <h1 className="mt-4 font-serif text-3xl font-semibold text-[#493943] sm:text-4xl">
             선녀사주
           </h1>
 
-          <p className="mt-2 text-neutral-500">
+          <p className="mt-3 text-sm leading-6 text-[#8e817a]">
             정확한 사주풀이를 위해 정보를 입력해주세요.
           </p>
         </header>
 
         <form onSubmit={handleSubmit} className="space-y-6">
 
-          <section className="rounded-3xl bg-white p-5 shadow-sm">
-            <h2 className="mb-5 text-lg font-bold text-neutral-800">
+          <section className="rounded-[26px] border border-[#dfd2c1] bg-[rgba(255,253,249,0.94)] p-5 shadow-[0_12px_40px_rgba(70,47,60,0.06)] sm:p-6">
+            <h2 className="mb-5 font-serif text-lg font-semibold text-[#493943]">
               기본정보
             </h2>
 
@@ -167,7 +167,7 @@ export default function ApplyPage() {
                 value={customerName}
                 onChange={(e) => setCustomerName(e.target.value)}
                 placeholder="예: 홍길동"
-                className="mt-2 w-full rounded-xl border border-neutral-200 px-4 py-3 outline-none focus:border-neutral-600"
+                className="mt-2 w-full rounded-xl border border-neutral-200 px-4 py-3 outline-none focus:border-[#876d82]"
               />
             </label>
 
@@ -187,7 +187,7 @@ export default function ApplyPage() {
                     onClick={() => setGender(value)}
                     className={`rounded-xl border py-3 ${
                       gender === value
-                        ? "border-neutral-900 bg-neutral-900 text-white"
+                        ? "border-[#604359] bg-[#604359] text-white"
                         : "border-neutral-200 bg-white text-neutral-700"
                     }`}
                   >
@@ -198,8 +198,8 @@ export default function ApplyPage() {
             </div>
           </section>
 
-          <section className="rounded-3xl bg-white p-5 shadow-sm">
-            <h2 className="mb-5 text-lg font-bold text-neutral-800">
+          <section className="rounded-[26px] border border-[#dfd2c1] bg-[rgba(255,253,249,0.94)] p-5 shadow-[0_12px_40px_rgba(70,47,60,0.06)] sm:p-6">
+            <h2 className="mb-5 font-serif text-lg font-semibold text-[#493943]">
               출생정보
             </h2>
 
@@ -227,7 +227,7 @@ export default function ApplyPage() {
                   onClick={() => setCalendarType("solar")}
                   className={`rounded-xl border py-3 ${
                     calendarType === "solar"
-                      ? "border-neutral-900 bg-neutral-900 text-white"
+                      ? "border-[#604359] bg-[#604359] text-white"
                       : "border-neutral-200 text-neutral-700"
                   }`}
                 >
@@ -239,7 +239,7 @@ export default function ApplyPage() {
                   onClick={() => setCalendarType("lunar")}
                   className={`rounded-xl border py-3 ${
                     calendarType === "lunar"
-                      ? "border-neutral-900 bg-neutral-900 text-white"
+                      ? "border-[#604359] bg-[#604359] text-white"
                       : "border-neutral-200 text-neutral-700"
                   }`}
                 >
@@ -313,8 +313,8 @@ export default function ApplyPage() {
             </label>
           </section>
 
-          <section className="rounded-3xl bg-white p-5 shadow-sm">
-            <h2 className="mb-5 text-lg font-bold text-neutral-800">
+          <section className="rounded-[26px] border border-[#dfd2c1] bg-[rgba(255,253,249,0.94)] p-5 shadow-[0_12px_40px_rgba(70,47,60,0.06)] sm:p-6">
+            <h2 className="mb-5 font-serif text-lg font-semibold text-[#493943]">
               궁금한 내용
             </h2>
 
@@ -330,7 +330,7 @@ export default function ApplyPage() {
                     onClick={() => toggleCategory(category)}
                     className={`rounded-xl border py-2.5 text-sm ${
                       active
-                        ? "border-neutral-900 bg-neutral-900 text-white"
+                        ? "border-[#604359] bg-[#604359] text-white"
                         : "border-neutral-200 text-neutral-700"
                     }`}
                   >
@@ -345,7 +345,7 @@ export default function ApplyPage() {
               onChange={(e) => setQuestion(e.target.value)}
               rows={7}
               placeholder="선녀님께 궁금한 내용을 자유롭게 작성해주세요."
-              className="mt-5 w-full resize-none rounded-xl border border-neutral-200 p-4 outline-none focus:border-neutral-600"
+              className="mt-5 w-full resize-none rounded-xl border border-neutral-200 p-4 outline-none focus:border-[#876d82]"
             />
           </section>
 
@@ -358,7 +358,7 @@ export default function ApplyPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full rounded-2xl bg-neutral-900 py-4 text-lg font-bold text-white disabled:opacity-50"
+            className="w-full rounded-2xl border border-[#604359] bg-[#604359] py-4 text-base font-bold text-white shadow-[0_8px_24px_rgba(80,50,72,0.16)] transition hover:bg-[#51374a] disabled:opacity-50"
           >
             {loading
               ? "상담 접수 중..."

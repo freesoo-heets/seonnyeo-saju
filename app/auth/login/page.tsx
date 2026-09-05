@@ -2,7 +2,14 @@ import Link from "next/link";
 
 import LoginForm from "@/components/login-form";
 
-export default function LoginPage() {
+export const instant = false;
+
+export default async function LoginPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ next?: string }>;
+}) {
+  const { next } = await searchParams;
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#f5eee5] px-4 py-8 text-[#352d32] sm:px-6">
       {/* 배경 */}
@@ -128,7 +135,13 @@ export default function LoginPage() {
               </p>
             </div>
 
-            <LoginForm />
+            {next?.startsWith("/apply") ? (
+              <div className="mb-5 rounded-2xl border border-[#dfcfad] bg-[#fbf4e6] px-4 py-3 text-sm leading-6 text-[#806b45]">
+                상담 신청은 로그인한 회원만 이용할 수 있습니다. 로그인 후 상담 신청 화면으로 바로 이동합니다.
+              </div>
+            ) : null}
+
+            <LoginForm nextPath={next} />
 
             <div className="mt-7 flex items-center justify-center gap-3 text-xs text-[#9b8f88]">
               <span className="h-px w-8 bg-[#ded2c4]" />

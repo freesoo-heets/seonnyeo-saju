@@ -1,4 +1,6 @@
-﻿const positionName: Record<string, string> = {
+import { ElementText } from "@/components/saju/FiveElementDisplay";
+
+const positionName: Record<string, string> = {
   year: "년주",
   month: "월주",
   day: "일주",

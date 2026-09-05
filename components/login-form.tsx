@@ -3,7 +3,7 @@
 import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 
-export default function LoginForm() {
+export default function LoginForm({ nextPath }: { nextPath?: string }) {
   const router = useRouter();
 
   const [nickname, setNickname] = useState("");
@@ -73,7 +73,13 @@ export default function LoginForm() {
         return;
       }
 
+      const safeNext =
+        nextPath && nextPath.startsWith("/") && !nextPath.startsWith("//")
+          ? nextPath
+          : null;
+
       const destination =
+        safeNext ||
         data.redirectTo ||
         data.redirect ||
         (data.role === "admin" ? "/admin" : "/member");

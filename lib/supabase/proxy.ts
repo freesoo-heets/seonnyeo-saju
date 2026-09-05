@@ -5,11 +5,9 @@ import { hasEnvVars } from "../utils";
 function isPublicPath(pathname: string) {
   return (
     pathname === "/" ||
-    pathname === "/apply" ||
     pathname === "/manifest.webmanifest" ||
     pathname.startsWith("/auth/") ||
     pathname.startsWith("/api/auth/") ||
-    pathname.startsWith("/api/readings") ||
     pathname.startsWith("/api/result/") ||
     pathname.startsWith("/result/") ||
     pathname.startsWith("/api/recovery/")
@@ -59,9 +57,18 @@ export async function updateSession(request: NextRequest) {
   }
 
   if (!user) {
+    if (pathname.startsWith("/api/")) {
+      return NextResponse.json(
+        { error: "로그인이 필요합니다." },
+        { status: 401 },
+      );
+    }
+
     const url = request.nextUrl.clone();
+    const next = `${pathname}${request.nextUrl.search}`;
     url.pathname = "/auth/login";
     url.search = "";
+    url.searchParams.set("next", next);
     return NextResponse.redirect(url);
   }
 
