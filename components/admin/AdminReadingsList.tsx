@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
@@ -7,6 +7,7 @@ type Reading = {
   id: string;
   consultation_number: string;
   customer_name: string;
+  requester_nickname?: string | null;
   gender: string;
   birth_date: string;
   question_categories: string[] | null;
@@ -117,6 +118,7 @@ export default function AdminReadingsList({
 
       const target = [
         reading.consultation_number,
+        reading.requester_nickname ?? "",
         reading.customer_name,
         reading.birth_date,
         reading.question ?? "",
@@ -146,7 +148,7 @@ export default function AdminReadingsList({
             </h2>
 
             <p className="mt-1 text-sm text-neutral-500">
-              이름, 상담번호, 생년월일, 질문으로 검색할 수 있습니다.
+              닉네임, 이름, 상담번호, 생년월일, 질문으로 검색할 수 있습니다.
             </p>
           </div>
 
@@ -172,7 +174,7 @@ export default function AdminReadingsList({
               onChange={(e) =>
                 setKeyword(e.target.value)
               }
-              placeholder="이름  상담번호  생년월일  질문 검색"
+              placeholder="닉네임  이름  상담번호  생년월일  질문 검색"
               className="w-full rounded-xl border border-neutral-200 bg-white px-4 py-3 pr-12 text-neutral-900 outline-none focus:border-purple-400"
             />
 
@@ -287,7 +289,12 @@ export default function AdminReadingsList({
                       {reading.consultation_number}
                     </div>
 
-                    <div className="mt-2 flex flex-wrap items-center gap-2">
+                    <div className="mt-2">
+                      <div className="text-xs font-bold text-[#795d72]">
+                        @{reading.requester_nickname ?? "미연결"}
+                      </div>
+
+                      <div className="mt-1 flex flex-wrap items-center gap-2">
 
                       <h3 className="text-lg font-bold text-neutral-950">
                         {reading.customer_name}
@@ -299,6 +306,7 @@ export default function AdminReadingsList({
                           : "여성"}
                       </span>
 
+                      </div>
                     </div>
 
                     <div className="mt-1 text-sm text-neutral-500">

@@ -135,7 +135,7 @@ export default async function MemberPage() {
 
 
         {/* 메뉴 */}
-        <section className="mt-5 grid gap-4 sm:grid-cols-2">
+        <section className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
 
           <Link
             href="/apply"
@@ -156,6 +156,29 @@ export default async function MemberPage() {
 
             <p className="mt-5 text-sm font-bold text-[#76586f]">
               상담 신청 
+            </p>
+          </Link>
+
+
+          <Link
+            href="/member/readings"
+            className="seonnyeo-card group p-5 transition hover:-translate-y-0.5 hover:border-[#bca67d]"
+          >
+            <div className="flex h-11 w-11 items-center justify-center rounded-full border border-[#cfb990] bg-[#faf3e7] text-lg text-[#76576f]">
+
+            </div>
+
+            <h3 className="mt-4 font-serif text-lg font-semibold">
+              내 상담내역
+            </h3>
+
+            <p className="mt-2 text-sm leading-6 text-[#8e827c]">
+              내가 신청한 상담의 진행 상태와
+              완료된 사주풀이를 확인합니다.
+            </p>
+
+            <p className="mt-5 text-sm font-bold text-[#76586f]">
+              상담내역 보기 
             </p>
           </Link>
 

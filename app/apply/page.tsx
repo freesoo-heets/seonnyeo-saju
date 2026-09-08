@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { FormEvent, useState } from "react";
 
 const categories = [
@@ -123,12 +124,22 @@ export default function ApplyPage() {
                풀이 대기
             </div>
 
-            <button
-              onClick={() => window.location.reload()}
-              className="mt-8 w-full rounded-2xl border border-neutral-200 py-3 text-neutral-700"
-            >
-              새로운 상담 등록
-            </button>
+            <div className="mt-8 grid gap-3 sm:grid-cols-2">
+              <Link
+                href="/member/readings"
+                className="inline-flex w-full items-center justify-center rounded-2xl bg-[#604359] px-4 py-3 text-sm font-bold text-white shadow-[0_8px_24px_rgba(80,50,72,0.14)] transition hover:bg-[#51374a]"
+              >
+                내 상담내역
+              </Link>
+
+              <button
+                type="button"
+                onClick={() => window.location.reload()}
+                className="w-full rounded-2xl border border-[#d8ccbd] bg-[#fffaf4] py-3 text-sm font-semibold text-[#6e5f66] transition hover:bg-white"
+              >
+                새로운 상담 등록
+              </button>
+            </div>
           </div>
         </div>
       </main>

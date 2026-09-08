@@ -196,7 +196,14 @@ const authClient =
             상담자 정보
           </h2>
 
-          <div className="mt-5 grid grid-cols-2 gap-5 sm:grid-cols-4">
+          <div className="mt-5 grid grid-cols-2 gap-5 sm:grid-cols-5">
+
+            <Info
+              label="신청 닉네임"
+              value={
+                reading.requester_nickname ?? "기존 상담"
+              }
+            />
 
             <Info
               label="성별"

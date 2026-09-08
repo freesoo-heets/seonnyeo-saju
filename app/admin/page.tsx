@@ -12,6 +12,9 @@ type Reading = {
   status: string | null;
   created_at: string | null;
   result_token: string | null;
+  customer_name: string | null;
+  requester_id: string | null;
+  requester_nickname: string | null;
 };
 
 function getStatusLabel(status: string | null) {
@@ -109,7 +112,7 @@ export default async function AdminPage() {
 
   const { data, error } = await admin
     .from("readings")
-    .select("id, status, created_at, result_token")
+    .select("id, status, created_at, result_token, customer_name, requester_id, requester_nickname")
     .order("created_at", {
       ascending: false,
     });
@@ -119,6 +122,38 @@ export default async function AdminPage() {
   }
 
   const readings: Reading[] = (data ?? []) as Reading[];
+
+  const requesterIds = Array.from(
+    new Set(
+      readings
+        .map((reading) => reading.requester_id)
+        .filter((id): id is string => Boolean(id))
+    )
+  );
+
+  const nicknameByUserId = new Map<string, string>();
+
+  if (requesterIds.length > 0) {
+    const { data: profiles, error: profileError } = await admin
+      .from("profiles")
+      .select("id, nickname")
+      .in("id", requesterIds);
+
+    if (profileError) {
+      console.error("[admin] profile nickname load error:", profileError);
+    }
+
+    for (const profile of profiles ?? []) {
+      nicknameByUserId.set(profile.id, profile.nickname);
+    }
+  }
+
+  const getRequesterNickname = (reading: Reading) =>
+    (reading.requester_id
+      ? nicknameByUserId.get(reading.requester_id)
+      : null) ??
+    reading.requester_nickname ??
+    "미연결";
 
   const totalCount = readings.length;
 
@@ -208,6 +243,13 @@ export default async function AdminPage() {
                   className="rounded-2xl border border-[#ded2c2] bg-[#fffaf3] px-4 py-2.5 text-center text-sm font-medium text-[#685e5b] transition hover:border-[#bda778] hover:bg-white"
                 >
                   상담신청
+                </Link>
+
+                <Link
+                  href="/member/readings"
+                  className="rounded-2xl border border-[#ded2c2] bg-[#fffaf3] px-4 py-2.5 text-center text-sm font-medium text-[#685e5b] transition hover:border-[#bda778] hover:bg-white"
+                >
+                  내 상담
                 </Link>
 
                 <Link
@@ -335,6 +377,14 @@ export default async function AdminPage() {
                         </th>
 
                         <th className="px-5 py-3 text-left text-xs font-semibold text-[#8c7e75]">
+                          닉네임
+                        </th>
+
+                        <th className="px-5 py-3 text-left text-xs font-semibold text-[#8c7e75]">
+                          상담자
+                        </th>
+
+                        <th className="px-5 py-3 text-left text-xs font-semibold text-[#8c7e75]">
                           사주 상태
                         </th>
 
@@ -358,6 +408,16 @@ export default async function AdminPage() {
                             <span className="font-serif text-sm font-semibold text-[#5e4a57]">
                               {String(totalCount - index).padStart(2, "0")}
                             </span>
+                          </td>
+
+                          <td className="px-5 py-4">
+                            <span className="font-semibold text-[#4d3d47]">
+                              {getRequesterNickname(reading)}
+                            </span>
+                          </td>
+
+                          <td className="px-5 py-4 text-sm text-[#817570]">
+                            {reading.customer_name || "-"}
                           </td>
 
                           <td className="px-5 py-4">
@@ -405,7 +465,11 @@ export default async function AdminPage() {
 
                           <div>
                             <p className="font-serif text-sm font-semibold text-[#4d3d47]">
-                              사주 상담
+                              {getRequesterNickname(reading)}
+                            </p>
+
+                            <p className="mt-1 text-xs text-[#7f716d]">
+                              상담자 {reading.customer_name || "-"}
                             </p>
 
                             <p className="mt-1 text-xs text-[#988b84]">
