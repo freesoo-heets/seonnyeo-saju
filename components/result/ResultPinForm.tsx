@@ -2,6 +2,8 @@
 
 import { FormEvent, useState } from "react";
 
+import BrandMark from "@/components/brand/BrandMark";
+
 export default function ResultPinForm({
   token,
 }: {
@@ -55,9 +57,7 @@ export default function ResultPinForm({
       <div className="w-full max-w-md">
 
         <div className="text-center">
-          <div className="text-5xl">
-            
-          </div>
+          <div className="flex justify-center"><BrandMark size="lg" /></div>
 
           <div className="mt-4 text-sm font-bold text-[#795d72]">
             선녀사주
@@ -76,7 +76,7 @@ export default function ResultPinForm({
 
         <form
           onSubmit={submit}
-          className="mt-8 rounded-[28px] border border-[#ddcfbd] bg-[rgba(255,253,249,0.96)] p-6 shadow-[0_18px_55px_rgba(68,45,59,0.09)]"
+          className="ss-card mt-8 p-6"
         >
           <label className="block">
 
@@ -111,7 +111,7 @@ export default function ResultPinForm({
           <button
             type="submit"
             disabled={loading || pin.length !== 4}
-            className="mt-5 w-full rounded-2xl border border-[#65475e] bg-[#604359] py-4 font-bold text-white shadow-[0_8px_22px_rgba(79,52,71,0.18)] hover:bg-[#52394c] disabled:opacity-40"
+            className="ss-primary mt-5 w-full py-4 disabled:opacity-40"
           >
             {loading
               ? "확인 중..."

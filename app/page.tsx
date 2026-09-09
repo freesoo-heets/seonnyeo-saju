@@ -1,30 +1,11 @@
 import Link from "next/link";
 
+import BrandMark from "@/components/brand/BrandMark";
 import InstallAppButton from "@/components/pwa/InstallAppButton";
-
-function MoonMark({ large = false }: { large?: boolean }) {
-  return (
-    <svg
-      viewBox="0 0 64 64"
-      className={large ? "h-10 w-10" : "h-7 w-7"}
-      aria-hidden="true"
-    >
-      <path
-        d="M39 10c-10.7 2.9-17 13.9-14.1 24.6C27.8 45.3 38.8 51.6 49.5 48.7 45.2 54.5 38.4 58 30.7 57.3 16.6 56 6.2 43.5 7.5 29.4 8.6 16.9 18.5 7.3 30.6 5.6 3-.4 5.9-.1 8.4.5Z"
-        fill="#684b60"
-      />
-      <path
-        d="M45 13l1.5 4.2 4.2 1.5-4.2 1.5L45 24.4l-1.5-4.2-4.2-1.5 4.2-1.5L45 13Z"
-        fill="#b49764"
-      />
-      <circle cx="48" cy="31" r="2" fill="#b49764" />
-    </svg>
-  );
-}
 
 export default function HomePage() {
   return (
-    <main className="saju-page relative min-h-screen overflow-hidden bg-[#f7f1e8] text-[#3f343a]">
+    <main className="saju-page relative min-h-screen overflow-hidden text-[#3f343a]">
       {/* 배경 */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute -left-40 -top-40 h-[500px] w-[500px] rounded-full bg-[#aa8ba7]/15 blur-3xl" />
@@ -33,21 +14,10 @@ export default function HomePage() {
       </div>
 
       {/* NAV */}
-      <header className="relative z-10 mx-auto max-w-6xl px-5 pt-5 sm:px-7 sm:pt-7">
-        <div className="flex items-center justify-between">
+      <header className="relative z-10 mx-auto max-w-6xl px-4 pt-4 sm:px-7 sm:pt-6">
+        <div className="ss-topbar flex items-center justify-between px-3 py-2.5 sm:px-4">
           <Link href="/" className="flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-full border border-[#c9b181] bg-[#faf3e6] shadow-sm">
-              <MoonMark />
-            </div>
-
-            <div>
-              <p className="text-[9px] font-bold tracking-[0.27em] text-[#a88d61]">
-                SEONNYEO SAJU
-              </p>
-              <p className="font-serif text-lg font-semibold text-[#493943]">
-                선녀사주
-              </p>
-            </div>
+            <BrandMark size="sm" withWordmark compact />
           </Link>
 
           <div className="flex items-center gap-2">
@@ -70,8 +40,8 @@ export default function HomePage() {
       {/* HERO */}
       <section className="relative z-10 mx-auto max-w-6xl px-5 pb-16 pt-16 sm:px-7 sm:pb-24 sm:pt-24">
         <div className="mx-auto max-w-3xl text-center">
-          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full border border-[#cbb383] bg-[#faf2e4] shadow-[0_8px_30px_rgba(81,55,72,0.08)]">
-            <MoonMark large />
+          <div className="flex justify-center">
+            <BrandMark size="lg" />
           </div>
 
           <p className="mt-6 text-[10px] font-bold tracking-[0.3em] text-[#a98b5b]">

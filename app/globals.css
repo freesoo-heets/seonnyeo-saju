@@ -961,3 +961,253 @@ input:focus, textarea:focus, select:focus {
   border-color: #8d65a0 !important;
   box-shadow: 0 0 0 3px rgba(141, 101, 160, 0.12) !important;
 }
+
+/* ==========================================================
+   Seonnyeo Saju · Design System v2.0 · 2026-09
+   ========================================================== */
+:root {
+  --ss-bg: #f7f1e8;
+  --ss-surface: rgba(255, 253, 249, 0.96);
+  --ss-surface-strong: #fffdf9;
+  --ss-ink: #392f37;
+  --ss-ink-soft: #665a61;
+  --ss-muted: #8e817a;
+  --ss-plum: #604359;
+  --ss-plum-deep: #4d3447;
+  --ss-gold: #b9975d;
+  --ss-gold-soft: #ead9b7;
+  --ss-line: #dfd2c2;
+  --ss-line-soft: #ece3d8;
+  --ss-shadow-sm: 0 8px 26px rgba(69, 45, 58, 0.055);
+  --ss-shadow-md: 0 16px 48px rgba(69, 45, 58, 0.075);
+  --ss-shadow-lg: 0 28px 76px rgba(69, 45, 58, 0.11);
+}
+
+body {
+  min-height: 100vh;
+  background: var(--ss-bg);
+  color: var(--ss-ink);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+.saju-page {
+  isolation: isolate;
+}
+
+.saju-page > * {
+  position: relative;
+  z-index: 1;
+}
+
+.ss-shell {
+  width: min(100% - 2rem, 72rem);
+  margin-inline: auto;
+}
+
+.ss-shell-wide {
+  width: min(100% - 2rem, 80rem);
+  margin-inline: auto;
+}
+
+.ss-topbar {
+  border: 1px solid rgba(216, 203, 187, 0.92);
+  border-radius: 22px;
+  background: rgba(255, 252, 247, 0.78);
+  box-shadow: var(--ss-shadow-sm);
+  backdrop-filter: blur(16px);
+}
+
+.ss-card {
+  border: 1px solid var(--ss-line);
+  border-radius: 28px;
+  background: var(--ss-surface);
+  box-shadow: var(--ss-shadow-md);
+  backdrop-filter: blur(10px);
+}
+
+.ss-card-subtle {
+  border: 1px solid var(--ss-line-soft);
+  border-radius: 22px;
+  background: rgba(251, 247, 241, 0.88);
+}
+
+.ss-card-interactive {
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.ss-card-interactive:hover {
+  transform: translateY(-2px);
+  border-color: #cdbb9f;
+  box-shadow: 0 18px 44px rgba(69, 45, 58, 0.09);
+}
+
+.ss-kicker {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.24em;
+  color: #9f8151;
+}
+
+.ss-title {
+  font-family: ui-serif, Georgia, Cambria, "Times New Roman", serif;
+  font-weight: 650;
+  letter-spacing: -0.03em;
+  color: #44343f;
+}
+
+.ss-muted {
+  color: var(--ss-muted);
+}
+
+.ss-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(185, 151, 93, 0.62), transparent);
+}
+
+.ss-icon-tile {
+  display: inline-flex;
+  height: 44px;
+  width: 44px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #d7c39d;
+  border-radius: 15px;
+  background: linear-gradient(145deg, #fffaf0, #f7eddd);
+  color: #76586f;
+  box-shadow: 0 6px 18px rgba(72, 47, 60, 0.055);
+}
+
+.ss-icon-tile svg {
+  height: 21px;
+  width: 21px;
+  stroke-width: 1.8;
+}
+
+.ss-primary,
+.ss-secondary,
+.ss-ghost {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 14px;
+  padding: 0.7rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 750;
+  transition: transform 150ms ease, box-shadow 180ms ease, background 180ms ease, border-color 180ms ease;
+}
+
+.ss-primary {
+  border: 1px solid #57374f;
+  background: linear-gradient(145deg, #67485f, #53384d);
+  color: #fff;
+  box-shadow: 0 8px 22px rgba(85, 52, 76, 0.18);
+}
+
+.ss-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 11px 28px rgba(85, 52, 76, 0.22);
+}
+
+.ss-secondary {
+  border: 1px solid #dcd0c1;
+  background: rgba(255, 252, 247, 0.95);
+  color: #675a61;
+}
+
+.ss-secondary:hover,
+.ss-ghost:hover {
+  border-color: #c7b59a;
+  background: #fff;
+}
+
+.ss-ghost {
+  border: 1px solid transparent;
+  color: #786a70;
+}
+
+.ss-form-card {
+  border: 1px solid var(--ss-line);
+  border-radius: 26px;
+  background: rgba(255, 253, 249, 0.96);
+  box-shadow: 0 12px 36px rgba(70, 47, 60, 0.055);
+}
+
+.ss-form-card label > span:first-child,
+.ss-field-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #655960;
+}
+
+.ss-choice {
+  min-height: 46px;
+  border-radius: 14px;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.ss-choice[data-active="true"] {
+  border-color: #604359;
+  background: #604359;
+  color: #fff;
+  box-shadow: 0 8px 18px rgba(96, 67, 89, 0.16);
+}
+
+.ss-empty {
+  border: 1px dashed #d8c8b5;
+  border-radius: 26px;
+  background: rgba(255, 252, 247, 0.82);
+  text-align: center;
+}
+
+.ss-admin-stat {
+  position: relative;
+  overflow: hidden;
+}
+
+.ss-admin-stat::after {
+  content: "";
+  position: absolute;
+  right: -24px;
+  top: -28px;
+  height: 90px;
+  width: 90px;
+  border-radius: 999px;
+  border: 1px solid rgba(185, 151, 93, 0.15);
+}
+
+@media (max-width: 640px) {
+  .ss-shell,
+  .ss-shell-wide {
+    width: min(100% - 1.25rem, 100%);
+  }
+
+  .ss-card,
+  .seonnyeo-card,
+  .saju-panel,
+  .saju-hero-card {
+    border-radius: 22px !important;
+  }
+
+  .ss-primary,
+  .ss-secondary,
+  .ss-ghost,
+  .saju-btn-primary,
+  .saju-btn-secondary {
+    min-height: 46px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

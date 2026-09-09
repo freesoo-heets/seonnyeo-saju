@@ -25,6 +25,7 @@ import TraditionalSajuAnalysis from "@/components/admin/TraditionalSajuAnalysis"
 
 import CalculateSajuButton from "@/components/admin/CalculateSajuButton";
 import ResultLinkButton from "@/components/admin/ResultLinkButton";
+import BrandMark from "@/components/brand/BrandMark";
 import {
   ElementBadge,
   ElementSurface,
@@ -162,24 +163,17 @@ const authClient =
 
       <div className="mx-auto max-w-5xl">
 
-        <Link
-          href="/admin"
-          className="text-sm font-medium text-neutral-500 hover:text-neutral-900"
-        >
-           상담 목록
-        </Link>
+        <Link href="/admin" className="ss-secondary">← 상담 목록</Link>
 
-
-        <header className="mt-5">
-
-          <div className="text-xs font-medium text-neutral-500">
+        <header className="saju-hero-card mt-5 overflow-hidden rounded-[30px] border border-[#dfd0bd] p-5 sm:p-8">
+          <BrandMark size="sm" withWordmark compact />
+          <p className="saju-eyebrow mt-5">ADMIN · CONSULTATION DETAIL</p>
+          <div className="mt-2 text-xs font-semibold tracking-[0.08em] text-[#a08662]">
             {reading.consultation_number}
           </div>
-
-          <h1 className="mt-2 text-3xl font-bold text-neutral-950">
+          <h1 className="mt-2 font-serif text-3xl font-semibold text-[#392c3b] sm:text-4xl">
             {reading.customer_name}님 사주
           </h1>
-
         </header>
         {["completed", "delivered"].includes(reading.status) && (
           <div className="mt-4">
@@ -193,7 +187,7 @@ const authClient =
 
         {/* 고객 정보 */}
 
-        <section className="mt-6 rounded-3xl bg-white p-5 shadow-sm sm:p-7">
+        <section className="saju-panel mt-6 rounded-[28px] p-5 sm:p-7">
 
           <h2 className="text-lg font-bold text-neutral-950">
             상담 정보

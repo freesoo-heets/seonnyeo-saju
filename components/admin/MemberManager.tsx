@@ -526,7 +526,7 @@ export function MemberManager() {
                 return (
                   <div
                     key={member.id}
-                    className="rounded-2xl border border-neutral-100 p-4"
+                    className="rounded-2xl border border-[#e8ddd1] bg-[#fffdf9] p-4 shadow-[0_6px_20px_rgba(68,45,59,0.035)]"
                   >
                     <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
 
@@ -540,17 +540,17 @@ export function MemberManager() {
 
                           {member.role ===
                           "admin" ? (
-                            <span className="rounded-full bg-purple-100 px-2.5 py-1 text-xs font-bold text-purple-700">
+                            <span className="rounded-full border border-[#cfbad7] bg-[#f4edf7] px-2.5 py-1 text-xs font-bold text-[#72577e]">
                               관리자
                             </span>
                           ) : (
-                            <span className="rounded-full bg-neutral-100 px-2.5 py-1 text-xs font-semibold text-neutral-600">
+                            <span className="rounded-full border border-[#ded5cb] bg-[#f7f2ec] px-2.5 py-1 text-xs font-semibold text-[#756d69]">
                               일반회원
                             </span>
                           )}
 
                           {isMe && (
-                            <span className="rounded-full bg-blue-50 px-2.5 py-1 text-xs font-semibold text-blue-600">
+                            <span className="rounded-full border border-[#c9d4e2] bg-[#f2f6fb] px-2.5 py-1 text-xs font-semibold text-[#5c7391]">
                               내 계정
                             </span>
                           )}

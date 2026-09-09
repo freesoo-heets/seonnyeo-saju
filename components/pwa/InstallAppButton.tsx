@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useState } from "react";
 
@@ -149,13 +149,8 @@ export default function InstallAppButton() {
   if (installed) {
     return (
       <div className="inline-flex min-h-[48px] items-center gap-2 rounded-2xl border border-green-200 bg-green-50 px-5 text-sm font-bold text-green-700">
-        <span>
-          
-        </span>
-
-        <span>
-          앱으로 설치됨
-        </span>
+        <span aria-hidden="true">✓</span>
+        <span>앱으로 설치됨</span>
       </div>
     );
   }
@@ -168,13 +163,8 @@ export default function InstallAppButton() {
         onClick={install}
         className="flex min-h-[56px] items-center justify-center gap-2 rounded-2xl border border-[#d8cce1] bg-[#f5eef9] px-7 text-base font-bold text-[#72578a] transition hover:bg-[#eee3f5]"
       >
-        <span className="text-xl">
-          
-        </span>
-
-        <span>
-          앱 설치
-        </span>
+        <span className="text-base" aria-hidden="true">↓</span>
+        <span>앱 설치</span>
       </button>
 
 
@@ -213,7 +203,7 @@ export default function InstallAppButton() {
                 className="flex h-10 w-10 items-center justify-center rounded-full bg-neutral-100 text-neutral-600"
                 aria-label="닫기"
               >
-                
+                ×
               </button>
 
             </div>

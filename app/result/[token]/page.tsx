@@ -9,6 +9,7 @@ import { createAdminClient } from "@/lib/supabase/admin";
 
 import ResultPinForm from "@/components/result/ResultPinForm";
 import ResultActions from "@/components/result/ResultActions";
+import BrandMark from "@/components/brand/BrandMark";
 import {
   ElementBadge,
   ElementSurface,
@@ -161,7 +162,8 @@ export default async function ResultPage({
       <div className="mx-auto max-w-3xl">
 
         <header className="saju-hero-card overflow-hidden rounded-[30px] border border-[#dfd0bd] p-6 text-center sm:p-9">
-          <p className="saju-eyebrow">SEONNYEO SAJU · RESULT</p>
+          <div className="flex justify-center"><BrandMark size="sm" withWordmark compact /></div>
+          <p className="saju-eyebrow mt-5">SEONNYEO SAJU · RESULT</p>
           <h1 className="mt-3 font-serif text-3xl font-semibold text-[#392c3b] sm:text-4xl">
             {reading.customer_name}님의 사주풀이
           </h1>
@@ -178,7 +180,7 @@ export default async function ResultPage({
 
 
 
-        <section className="mt-8 rounded-3xl bg-white p-5 shadow-sm sm:p-7">
+        <section className="saju-panel mt-8 rounded-[28px] p-5 sm:p-7">
 
           <div className="grid grid-cols-2 gap-5 sm:grid-cols-4">
 
@@ -376,7 +378,7 @@ export default async function ResultPage({
                       title
                     )
                   }
-                  className="rounded-3xl bg-white p-5 shadow-sm sm:p-7"
+                  className="saju-panel rounded-[28px] p-5 sm:p-7"
                 >
 
                   <h2 className="text-lg font-bold">

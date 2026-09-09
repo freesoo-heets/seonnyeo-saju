@@ -3,6 +3,7 @@ import { notFound, redirect } from "next/navigation";
 
 import { requireUser } from "@/lib/auth/permissions";
 import { createAdminClient } from "@/lib/supabase/admin";
+import BrandMark from "@/components/brand/BrandMark";
 
 export const instant = false;
 
@@ -92,7 +93,8 @@ export default async function MemberReadingDetailPage({
           <div className="p-5 sm:p-8">
             <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
               <div>
-                <p className="saju-eyebrow">CONSULTATION DETAIL</p>
+                <BrandMark size="sm" withWordmark compact />
+              <p className="saju-eyebrow mt-5">CONSULTATION DETAIL</p>
                 <h1 className="mt-2 font-serif text-3xl font-semibold text-[#443640]">
                   {reading.customer_name || "사주 상담"}
                 </h1>

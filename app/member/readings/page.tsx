@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 
 import { requireUser } from "@/lib/auth/permissions";
 import { createAdminClient } from "@/lib/supabase/admin";
+import BrandMark from "@/components/brand/BrandMark";
 
 export const instant = false;
 
@@ -80,7 +81,8 @@ export default async function MemberReadingsPage() {
           <div className="p-5 sm:p-8">
             <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
               <div>
-                <p className="saju-eyebrow">MY CONSULTATIONS</p>
+                <BrandMark size="sm" withWordmark compact />
+                <p className="saju-eyebrow mt-5">MY CONSULTATIONS</p>
                 <h1 className="mt-2 font-serif text-3xl font-semibold text-[#443640]">내 상담내역</h1>
                 <p className="mt-3 max-w-xl text-sm leading-6 text-[#8d817b]">
                   {current.profile.nickname}님이 신청한 상담의 진행 상태와 상세 내용을 확인할 수 있습니다.

@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { FormEvent, useState } from "react";
 
+import BrandMark from "@/components/brand/BrandMark";
+
 const categories = [
   "연애",
   "결혼",
@@ -97,8 +99,8 @@ export default function ApplyPage() {
     return (
       <main className="saju-page relative min-h-screen overflow-hidden bg-[#f7f1e8] px-4 py-10 text-[#3f343a] sm:px-6">
         <div className="mx-auto max-w-md">
-          <div className="rounded-3xl bg-white p-8 text-center shadow-sm">
-            <div className="mb-5 text-5xl"></div>
+          <div className="ss-card p-7 text-center sm:p-8">
+            <div className="mb-5 flex justify-center"><BrandMark size="lg" /></div>
 
             <h1 className="font-serif text-2xl font-semibold text-[#493943]">
               상담 접수가 완료되었습니다
@@ -151,7 +153,7 @@ export default function ApplyPage() {
       <div className="relative mx-auto w-full max-w-2xl">
 
         <header className="mb-8 text-center sm:mb-10">
-          <div className="text-5xl"></div>
+          <div className="flex justify-center"><BrandMark size="lg" /></div>
 
           <h1 className="mt-4 font-serif text-3xl font-semibold text-[#493943] sm:text-4xl">
             선녀사주
@@ -169,7 +171,7 @@ export default function ApplyPage() {
 
         <form onSubmit={handleSubmit} className="space-y-6">
 
-          <section className="rounded-[26px] border border-[#dfd2c1] bg-[rgba(255,253,249,0.94)] p-5 shadow-[0_12px_40px_rgba(70,47,60,0.06)] sm:p-6">
+          <section className="ss-form-card p-5 sm:p-6">
             <h2 className="mb-5 font-serif text-lg font-semibold text-[#493943]">
               기본정보
             </h2>
@@ -201,7 +203,7 @@ export default function ApplyPage() {
                     key={value}
                     type="button"
                     onClick={() => setGender(value)}
-                    className={`rounded-xl border py-3 ${
+                    className={`ss-choice border py-3 ${
                       gender === value
                         ? "border-[#604359] bg-[#604359] text-white"
                         : "border-neutral-200 bg-white text-neutral-700"
@@ -214,7 +216,7 @@ export default function ApplyPage() {
             </div>
           </section>
 
-          <section className="rounded-[26px] border border-[#dfd2c1] bg-[rgba(255,253,249,0.94)] p-5 shadow-[0_12px_40px_rgba(70,47,60,0.06)] sm:p-6">
+          <section className="ss-form-card p-5 sm:p-6">
             <h2 className="mb-5 font-serif text-lg font-semibold text-[#493943]">
               출생정보
             </h2>
@@ -241,7 +243,7 @@ export default function ApplyPage() {
                 <button
                   type="button"
                   onClick={() => setCalendarType("solar")}
-                  className={`rounded-xl border py-3 ${
+                  className={`ss-choice border py-3 ${
                     calendarType === "solar"
                       ? "border-[#604359] bg-[#604359] text-white"
                       : "border-neutral-200 text-neutral-700"
@@ -253,7 +255,7 @@ export default function ApplyPage() {
                 <button
                   type="button"
                   onClick={() => setCalendarType("lunar")}
-                  className={`rounded-xl border py-3 ${
+                  className={`ss-choice border py-3 ${
                     calendarType === "lunar"
                       ? "border-[#604359] bg-[#604359] text-white"
                       : "border-neutral-200 text-neutral-700"
@@ -329,7 +331,7 @@ export default function ApplyPage() {
             </label>
           </section>
 
-          <section className="rounded-[26px] border border-[#dfd2c1] bg-[rgba(255,253,249,0.94)] p-5 shadow-[0_12px_40px_rgba(70,47,60,0.06)] sm:p-6">
+          <section className="ss-form-card p-5 sm:p-6">
             <h2 className="mb-5 font-serif text-lg font-semibold text-[#493943]">
               궁금한 내용
             </h2>

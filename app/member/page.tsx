@@ -2,6 +2,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 
 import { LogoutButton } from "@/components/auth/LogoutButton";
+import BrandMark from "@/components/brand/BrandMark";
 import { requireUser } from "@/lib/auth/permissions";
 
 export const instant = false;
@@ -48,21 +49,7 @@ export default async function MemberPage() {
             <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
 
               <div>
-                <div className="flex items-center gap-3">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full border border-[#c9b182] bg-[#faf3e6] text-2xl text-[#73556c]">
-                    
-                  </div>
-
-                  <div>
-                    <p className="seonnyeo-eyebrow">
-                      SEONNYEO SAJU
-                    </p>
-
-                    <h1 className="mt-1 font-serif text-2xl font-semibold">
-                      선녀사주
-                    </h1>
-                  </div>
-                </div>
+                <BrandMark size="md" withWordmark />
 
                 <p className="mt-5 text-sm text-[#8c8079]">
                   반가워요,
@@ -139,11 +126,9 @@ export default async function MemberPage() {
 
           <Link
             href="/apply"
-            className="seonnyeo-card group p-5 transition hover:-translate-y-0.5 hover:border-[#bca67d]"
+            className="seonnyeo-card ss-card-interactive group p-5"
           >
-            <div className="flex h-11 w-11 items-center justify-center rounded-full border border-[#cfb990] bg-[#faf3e7] text-lg text-[#76576f]">
-              
-            </div>
+            <div className="ss-icon-tile" aria-hidden="true">✦</div>
 
             <h3 className="mt-4 font-serif text-lg font-semibold">
               새로운 상담
@@ -162,11 +147,9 @@ export default async function MemberPage() {
 
           <Link
             href="/member/readings"
-            className="seonnyeo-card group p-5 transition hover:-translate-y-0.5 hover:border-[#bca67d]"
+            className="seonnyeo-card ss-card-interactive group p-5"
           >
-            <div className="flex h-11 w-11 items-center justify-center rounded-full border border-[#cfb990] bg-[#faf3e7] text-lg text-[#76576f]">
-
-            </div>
+            <div className="ss-icon-tile" aria-hidden="true">☷</div>
 
             <h3 className="mt-4 font-serif text-lg font-semibold">
               내 상담내역
@@ -185,11 +168,9 @@ export default async function MemberPage() {
 
           <Link
             href="/"
-            className="seonnyeo-card group p-5 transition hover:-translate-y-0.5 hover:border-[#bca67d]"
+            className="seonnyeo-card ss-card-interactive group p-5"
           >
-            <div className="flex h-11 w-11 items-center justify-center rounded-full border border-[#cfb990] bg-[#faf3e7] text-lg text-[#76576f]">
-              
-            </div>
+            <div className="ss-icon-tile" aria-hidden="true">☾</div>
 
             <h3 className="mt-4 font-serif text-lg font-semibold">
               선녀사주 이야기
@@ -221,7 +202,7 @@ export default async function MemberPage() {
 
           <div className="mt-6 grid gap-3 sm:grid-cols-3">
 
-            <div className="rounded-[20px] border border-[#e5d9ca] bg-[#fbf7f1] p-4">
+            <div className="ss-card-subtle p-4">
               <span className="font-serif text-xl text-[#b19260]">
                 01
               </span>
@@ -237,7 +218,7 @@ export default async function MemberPage() {
             </div>
 
 
-            <div className="rounded-[20px] border border-[#e5d9ca] bg-[#fbf7f1] p-4">
+            <div className="ss-card-subtle p-4">
               <span className="font-serif text-xl text-[#b19260]">
                 02
               </span>
@@ -253,7 +234,7 @@ export default async function MemberPage() {
             </div>
 
 
-            <div className="rounded-[20px] border border-[#e5d9ca] bg-[#fbf7f1] p-4">
+            <div className="ss-card-subtle p-4">
               <span className="font-serif text-xl text-[#b19260]">
                 03
               </span>
@@ -275,9 +256,7 @@ export default async function MemberPage() {
 
         <footer className="py-10 text-center">
 
-          <div className="text-[#b19667]">
-            　　
-          </div>
+          <div className="text-[#b19667]">✦　☾　✦</div>
 
           <p className="mt-3 text-[10px] tracking-[0.22em] text-[#aa9e97]">
             SEONNYEO SAJU

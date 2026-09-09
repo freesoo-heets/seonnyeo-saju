@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import BrandMark from "@/components/brand/BrandMark";
 import LoginForm from "@/components/login-form";
 
 export const instant = false;
@@ -33,7 +34,7 @@ export default async function LoginPage({
       </div>
 
       <div className="relative mx-auto flex min-h-[calc(100vh-4rem)] max-w-5xl items-center justify-center">
-        <div className="grid w-full overflow-hidden rounded-[34px] border border-[#d9cab6] bg-[rgba(255,252,247,0.90)] shadow-[0_30px_80px_rgba(61,41,54,0.12)] backdrop-blur-xl md:grid-cols-[1.05fr_0.95fr]">
+        <div className="grid w-full overflow-hidden rounded-[34px] border border-[#d9cab6] bg-[rgba(255,252,247,0.94)] shadow-[0_30px_80px_rgba(61,41,54,0.12)] backdrop-blur-xl md:grid-cols-[1.05fr_0.95fr]">
 
           {/* 좌측 브랜드 영역 */}
           <section className="relative hidden overflow-hidden bg-[#594052] p-10 text-white md:flex md:flex-col md:justify-between lg:p-12">
@@ -56,18 +57,9 @@ export default async function LoginPage({
 
             <div className="relative">
               <div className="flex items-center gap-3">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full border border-[#d6bd8c]/50 bg-white/5 text-2xl text-[#e0c994]">
-                  
-                </div>
-
                 <div>
-                  <p className="text-xs font-semibold tracking-[0.28em] text-[#dcc99e]">
-                    SEONNYEO SAJU
-                  </p>
-
-                  <p className="mt-1 text-xs text-white/50">
-                    당신의 사주에 담긴 이야기
-                  </p>
+                  <BrandMark size="md" inverted withWordmark />
+                  <p className="mt-3 pl-[60px] text-xs text-white/50">당신의 사주에 담긴 이야기</p>
                 </div>
               </div>
 
@@ -107,17 +99,10 @@ export default async function LoginPage({
           <section className="p-5 sm:p-8 lg:p-12">
             {/* 모바일 브랜드 */}
             <div className="mb-8 text-center md:hidden">
-              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full border border-[#cbb48b] bg-[#faf3e7] text-2xl text-[#75566e] shadow-sm">
-                
-              </div>
+              <div className="flex justify-center"><BrandMark size="lg" /></div>
 
-              <p className="mt-4 text-[10px] font-semibold tracking-[0.28em] text-[#a58b60]">
-                SEONNYEO SAJU
-              </p>
-
-              <h1 className="mt-2 font-serif text-3xl font-semibold text-[#493944]">
-                선녀사주
-              </h1>
+              <p className="mt-4 text-[10px] font-semibold tracking-[0.28em] text-[#a58b60]">SEONNYEO SAJU</p>
+              <h1 className="mt-2 font-serif text-3xl font-semibold text-[#493944]">선녀사주</h1>
             </div>
 
             <div className="mb-7">
@@ -144,7 +129,7 @@ export default async function LoginPage({
 
             <div className="mt-7 flex items-center justify-center gap-3 text-xs text-[#9b8f88]">
               <span className="h-px w-8 bg-[#ded2c4]" />
-              <span></span>
+              <span>인연을 이어주세요</span>
               <span className="h-px w-8 bg-[#ded2c4]" />
             </div>
 

@@ -5,6 +5,7 @@ import AdminReadingsList from "@/components/admin/AdminReadingsList";
 import { LogoutButton } from "@/components/auth/LogoutButton";
 import { requireAdmin } from "@/lib/auth/permissions";
 import { createAdminClient } from "@/lib/supabase/admin";
+import BrandMark from "@/components/brand/BrandMark";
 
 export const instant = false;
 
@@ -109,7 +110,8 @@ export default async function AdminPage() {
           <div className="p-5 sm:p-8">
             <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
               <div>
-                <p className="saju-eyebrow">SEONNYEO SAJU · ADMIN</p>
+                <BrandMark size="sm" withWordmark compact />
+                <p className="saju-eyebrow mt-5">SEONNYEO SAJU · ADMIN</p>
                 <h1 className="mt-2 font-serif text-3xl font-semibold text-[#34263d] sm:text-4xl">
                   사주 상담 관리
                 </h1>
