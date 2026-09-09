@@ -25,7 +25,10 @@ import TraditionalSajuAnalysis from "@/components/admin/TraditionalSajuAnalysis"
 
 import CalculateSajuButton from "@/components/admin/CalculateSajuButton";
 import ResultLinkButton from "@/components/admin/ResultLinkButton";
-import { ElementBadge, ElementValue } from "@/components/saju/FiveElementDisplay";
+import {
+  ElementBadge,
+  ElementSurface,
+} from "@/components/saju/FiveElementDisplay";
 
 
 const elementOrder = [
@@ -155,7 +158,7 @@ const authClient =
 
   return (
 
-    <main className="relative min-h-screen overflow-hidden bg-[#f7f1e8] px-4 py-6 text-[#3f343a] sm:px-6">
+    <main className="saju-page relative min-h-screen overflow-hidden bg-[#f7f1e8] px-4 py-6 text-[#3f343a] sm:px-6">
 
       <div className="mx-auto max-w-5xl">
 
@@ -193,16 +196,19 @@ const authClient =
         <section className="mt-6 rounded-3xl bg-white p-5 shadow-sm sm:p-7">
 
           <h2 className="text-lg font-bold text-neutral-950">
-            상담자 정보
+            상담 정보
           </h2>
 
-          <div className="mt-5 grid grid-cols-2 gap-5 sm:grid-cols-5">
+          <div className="mt-5 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-6">
 
             <Info
-              label="신청 닉네임"
-              value={
-                reading.requester_nickname ?? "기존 상담"
-              }
+              label="신청자 닉네임"
+              value={reading.requester_nickname ?? "미연결"}
+            />
+
+            <Info
+              label="사주 대상"
+              value={reading.customer_name ?? "-"}
             />
 
             <Info
@@ -252,7 +258,7 @@ const authClient =
 
         {/* 질문 */}
 
-        <section className="mt-4 rounded-3xl bg-white p-5 shadow-sm sm:p-7">
+        <section className="mt-5 overflow-hidden rounded-[30px] border border-[#e5d8c8] bg-[rgba(255,253,249,0.96)] p-5 shadow-[0_14px_45px_rgba(75,50,62,0.07)] sm:p-7">
 
           <h2 className="text-lg font-bold text-neutral-950">
             궁금한 내용
@@ -293,7 +299,7 @@ const authClient =
 
         {/* 만세력 */}
 
-        <section className="mt-4 rounded-3xl bg-white p-5 shadow-sm sm:p-7">
+        <section className="mt-5 overflow-hidden rounded-[30px] border border-[#e5d8c8] bg-[rgba(255,253,249,0.97)] p-5 shadow-[0_14px_45px_rgba(75,50,62,0.07)] sm:p-7">
 
           <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-start">
 
@@ -390,31 +396,26 @@ const authClient =
 
               {dayMaster && (
 
-                <div className="mt-6 rounded-2xl bg-purple-50 p-5">
-
-                  <div className="text-xs font-bold text-purple-700">
-                    일간  나 자신
+                <ElementSurface
+                  element={dayMaster.element}
+                  className="mt-6 rounded-[22px] p-5"
+                >
+                  <div className="text-xs font-bold opacity-75">
+                    일간 · 나 자신
                   </div>
 
                   <div className="mt-2 flex flex-wrap items-baseline gap-2">
-
-                    <ElementValue element={dayMaster.element} className="text-3xl font-bold">
+                    <span className="text-3xl font-black">
                       {dayMaster.hanja}
-                    </ElementValue>
-
-                    <ElementValue element={dayMaster.element} className="text-xl font-bold">
-                      {dayMaster.korean}
-                    </ElementValue>
-
-                    <span className="text-sm font-medium text-neutral-600">
-                      {dayMaster.yinYang}
-                      {" "}
-                      {dayMaster.element}
                     </span>
-
+                    <span className="text-xl font-bold">
+                      {dayMaster.korean}
+                    </span>
+                    <span className="text-sm font-semibold opacity-75">
+                      {dayMaster.yinYang} {dayMaster.element}
+                    </span>
                   </div>
-
-                </div>
+                </ElementSurface>
 
               )}
 
@@ -858,92 +859,68 @@ function Pillar({
   highlight = false,
 }: {
   title: string;
-
-  korean?:
-    string |
-    null;
-
-  details?:
-    any;
-
-  tenGod?:
-    any;
-
-  highlight?:
-    boolean;
+  korean?: string | null;
+  details?: any;
+  tenGod?: any;
+  highlight?: boolean;
 }) {
-return (
-
+  return (
     <div
-      className={`rounded-2xl border p-3 text-center sm:p-5 ${
+      className={`relative rounded-[24px] border p-2.5 text-center transition sm:p-3 ${
         highlight
-          ? "border-purple-200 bg-purple-50"
-          : "border-neutral-100 bg-[#faf7f2]"
+          ? "border-[#b987ec] bg-[#fbf7ff] shadow-[0_10px_30px_rgba(139,92,246,0.10)]"
+          : "border-[#eadfd3] bg-[#fffdf9]"
       }`}
     >
+      {highlight ? (
+        <span className="absolute -right-1.5 -top-2 rounded-full bg-[#7c3aed] px-2.5 py-1 text-[10px] font-bold text-white shadow-sm">
+          나 자신
+        </span>
+      ) : null}
 
-      <div className="text-xs font-bold text-neutral-500">
+      <div className={`pb-2 text-xs font-bold ${highlight ? "text-[#6d28d9]" : "text-[#796f6a]"}`}>
         {title}
       </div>
 
-      <div className="mt-3">
-
-        <ElementValue
-          element={details?.stem?.element}
-          className="text-2xl font-bold sm:text-3xl"
-        >
+      <ElementSurface
+        element={details?.stem?.element}
+        className="rounded-2xl px-2 py-3"
+      >
+        <div className="text-[10px] font-semibold opacity-70">천간</div>
+        <div className="mt-1 text-3xl font-black leading-none sm:text-4xl">
           {details?.stem?.hanja ?? "-"}
-        </ElementValue>
-
-        <div className="mt-1 text-xs font-medium text-neutral-600">
+        </div>
+        <div className="mt-2 text-xs font-bold">
           {details?.stem
-            ? `${details.stem.yinYang} ${details.stem.element}`
+            ? `${details.stem.yinYang}${details.stem.element}`
             : "-"}
         </div>
+      </ElementSurface>
 
-      </div>
-
-      <div className="my-3 h-px bg-neutral-200" />
-
-      <div>
-
-        <ElementValue
-          element={details?.branch?.element}
-          className="text-2xl font-bold sm:text-3xl"
-        >
+      <ElementSurface
+        element={details?.branch?.element}
+        className="mt-2 rounded-2xl px-2 py-3"
+      >
+        <div className="text-[10px] font-semibold opacity-70">지지</div>
+        <div className="mt-1 text-3xl font-black leading-none sm:text-4xl">
           {details?.branch?.hanja ?? "-"}
-        </ElementValue>
-
-        <div className="mt-1 text-xs font-medium text-neutral-600">
+        </div>
+        <div className="mt-2 text-xs font-bold">
           {details?.branch
-            ? `${details.branch.yinYang} ${details.branch.element}`
+            ? `${details.branch.yinYang}${details.branch.element}`
             : "-"}
         </div>
+      </ElementSurface>
 
-      </div>
-
-      <div className="mt-3 text-sm font-bold text-neutral-900">
+      <div className="mt-3 text-sm font-bold text-[#43353f]">
         {korean ?? "-"}
       </div>
 
-      <div className="mt-3 space-y-1 text-[11px] font-medium text-neutral-600">
-
-        <div>
-          천간{" "}
-          {tenGod?.stem ??
-            "-"}
-        </div>
-
-        <div>
-          지지{" "}
-          {tenGod?.branch ??
-            "-"}
-        </div>
-
+      <div className="mt-2 space-y-1 text-[11px] font-medium text-[#756b70]">
+        <div>천간 {tenGod?.stem ?? "-"}</div>
+        <div>지지 {tenGod?.branch ?? "-"}</div>
       </div>
-
     </div>
-
   );
 }
 

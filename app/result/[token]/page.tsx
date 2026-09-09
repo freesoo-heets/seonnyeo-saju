@@ -9,6 +9,11 @@ import { createAdminClient } from "@/lib/supabase/admin";
 
 import ResultPinForm from "@/components/result/ResultPinForm";
 import ResultActions from "@/components/result/ResultActions";
+import {
+  ElementBadge,
+  ElementSurface,
+  getCharElement,
+} from "@/components/saju/FiveElementDisplay";
 
 function accessValue(
   token: string,
@@ -151,28 +156,21 @@ export default async function ResultPage({
   ];
 
   return (
-    <main className="min-h-screen bg-[#f7f1e8] px-4 py-8 text-neutral-900 sm:px-6">
+    <main className="saju-page min-h-screen bg-[#f7f1e8] px-4 py-8 text-neutral-900 sm:px-6">
 
       <div className="mx-auto max-w-3xl">
 
-        <header className="text-center">
-
-          <div className="text-5xl">
-            
-          </div>
-
-          <div className="mt-4 text-sm font-bold text-[#795d72]">
-            선녀사주
-          </div>
-
-          <h1 className="mt-2 text-3xl font-bold">
+        <header className="saju-hero-card overflow-hidden rounded-[30px] border border-[#dfd0bd] p-6 text-center sm:p-9">
+          <p className="saju-eyebrow">SEONNYEO SAJU · RESULT</p>
+          <h1 className="mt-3 font-serif text-3xl font-semibold text-[#392c3b] sm:text-4xl">
             {reading.customer_name}님의 사주풀이
           </h1>
-
-          <p className="mt-3 text-sm text-neutral-500">
+          <p className="mx-auto mt-3 max-w-lg text-sm leading-6 text-[#877b75]">
+            타고난 기운과 현재의 흐름을 차분하게 정리한 개인 상담 결과입니다.
+          </p>
+          <p className="mt-4 text-xs font-bold tracking-[0.08em] text-[#a08561]">
             {reading.consultation_number}
           </p>
-
         </header>
         <ResultActions
           customerName={reading.customer_name}
@@ -224,7 +222,7 @@ export default async function ResultPage({
 
         {reading.day_pillar && (
 
-          <section className="mt-4 rounded-3xl bg-white p-5 shadow-sm sm:p-7">
+          <section className="mt-5 rounded-[30px] border border-[#e5d8c8] bg-[rgba(255,253,249,0.97)] p-5 shadow-[0_14px_45px_rgba(75,50,62,0.07)] sm:p-7">
 
             <div className="text-sm font-bold text-[#795d72]">
               사주 원국
@@ -278,27 +276,22 @@ export default async function ResultPage({
 
             {dayMaster && (
 
-              <div className="mt-6 rounded-2xl bg-purple-50 p-5">
-
-                <div className="text-xs font-bold text-[#795d72]">
-                  일간
+              <ElementSurface
+                element={dayMaster.element}
+                className="mt-6 rounded-[22px] p-5"
+              >
+                <div className="text-xs font-bold opacity-75">
+                  일간 · 나 자신
                 </div>
 
-                <div className="mt-2 text-2xl font-bold">
-
-                  {dayMaster.hanja}
-                  {" "}
-                  {dayMaster.korean}
-
-                  <span className="ml-2 text-sm font-medium text-neutral-600">
-                    {dayMaster.yinYang}
-                    {" "}
-                    {dayMaster.element}
+                <div className="mt-2 flex flex-wrap items-baseline gap-2">
+                  <span className="text-3xl font-black">{dayMaster.hanja}</span>
+                  <span className="text-xl font-bold">{dayMaster.korean}</span>
+                  <span className="text-sm font-semibold opacity-75">
+                    {dayMaster.yinYang} {dayMaster.element}
                   </span>
-
                 </div>
-
-              </div>
+              </ElementSurface>
 
             )}
 
@@ -322,24 +315,11 @@ export default async function ResultPage({
                     element
                   ) => (
 
-                    <div
-                      key={
-                        element
-                      }
-                      className="rounded-xl bg-[#f7f1e8] p-3 text-center"
-                    >
-
-                      <div className="text-xs text-neutral-500">
-                        {element}
-                      </div>
-
-                      <div className="mt-1 text-xl font-bold">
-                        {counts[
-                          element
-                        ] ?? 0}
-                      </div>
-
-                    </div>
+                    <ElementBadge
+                      key={element}
+                      element={element}
+                      count={counts[element] ?? 0}
+                    />
 
                   )
                 )}
@@ -355,7 +335,7 @@ export default async function ResultPage({
 
         {reading.question && (
 
-          <section className="mt-4 rounded-3xl bg-white p-5 shadow-sm sm:p-7">
+          <section className="mt-5 rounded-[30px] border border-[#e5d8c8] bg-[rgba(255,253,249,0.97)] p-5 shadow-[0_14px_45px_rgba(75,50,62,0.07)] sm:p-7">
 
             <h2 className="text-lg font-bold">
               상담 질문
@@ -476,25 +456,46 @@ function Pillar({
   hanja?: string | null;
   highlight?: boolean;
 }) {
+  const hanjaChars = Array.from(hanja ?? "");
+  const koreanChars = Array.from(korean ?? "");
+  const stemHanja = hanjaChars[0] ?? "-";
+  const branchHanja = hanjaChars[1] ?? "-";
+  const stemKorean = koreanChars[0] ?? "";
+  const branchKorean = koreanChars[1] ?? "";
+
   return (
     <div
-      className={`rounded-2xl p-3 text-center ${
+      className={`relative rounded-[24px] border p-2.5 text-center sm:p-3 ${
         highlight
-          ? "bg-purple-50"
-          : "bg-[#f7f1e8]"
+          ? "border-[#b987ec] bg-[#fbf7ff] shadow-[0_10px_30px_rgba(139,92,246,0.10)]"
+          : "border-[#eadfd3] bg-[#fffdf9]"
       }`}
     >
-      <div className="text-xs text-neutral-500">
+      {highlight ? (
+        <span className="absolute -right-1.5 -top-2 rounded-full bg-[#7c3aed] px-2.5 py-1 text-[10px] font-bold text-white">
+          나 자신
+        </span>
+      ) : null}
+
+      <div className={`pb-2 text-xs font-bold ${highlight ? "text-[#6d28d9]" : "text-[#796f6a]"}`}>
         {title}
       </div>
 
-      <div className="mt-2 text-xl font-bold sm:text-2xl">
-        {hanja ?? "-"}
-      </div>
+      <ElementSurface
+        element={getCharElement(stemHanja)}
+        className="rounded-2xl px-2 py-3"
+      >
+        <div className="text-3xl font-black leading-none sm:text-4xl">{stemHanja}</div>
+        <div className="mt-2 text-xs font-bold">{stemKorean}</div>
+      </ElementSurface>
 
-      <div className="mt-1 text-sm font-bold">
-        {korean ?? "-"}
-      </div>
+      <ElementSurface
+        element={getCharElement(branchHanja)}
+        className="mt-2 rounded-2xl px-2 py-3"
+      >
+        <div className="text-3xl font-black leading-none sm:text-4xl">{branchHanja}</div>
+        <div className="mt-2 text-xs font-bold">{branchKorean}</div>
+      </ElementSurface>
     </div>
   );
 }

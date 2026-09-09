@@ -18,7 +18,7 @@ export default async function MemberPage() {
   }
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-[#f7f1e8] px-4 py-6 text-[#3f343a] sm:px-6 sm:py-10">
+    <main className="saju-page relative min-h-screen overflow-hidden bg-[#f7f1e8] px-4 py-6 text-[#3f343a] sm:px-6 sm:py-10">
 
       {/* 배경 장식 */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">

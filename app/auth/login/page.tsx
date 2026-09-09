@@ -3,7 +3,6 @@ import Link from "next/link";
 import LoginForm from "@/components/login-form";
 
 export const instant = false;
-
 export default async function LoginPage({
   searchParams,
 }: {
@@ -11,7 +10,7 @@ export default async function LoginPage({
 }) {
   const { next } = await searchParams;
   return (
-    <main className="relative min-h-screen overflow-hidden bg-[#f5eee5] px-4 py-8 text-[#352d32] sm:px-6">
+    <main className="saju-page relative min-h-screen overflow-hidden bg-[#f5eee5] px-4 py-8 text-[#352d32] sm:px-6">
       {/* 배경 */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute -left-32 -top-28 h-[360px] w-[360px] rounded-full bg-[#b99fba]/20 blur-3xl" />

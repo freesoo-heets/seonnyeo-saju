@@ -24,7 +24,7 @@ function MoonMark({ large = false }: { large?: boolean }) {
 
 export default function HomePage() {
   return (
-    <main className="relative min-h-screen overflow-hidden bg-[#f7f1e8] text-[#3f343a]">
+    <main className="saju-page relative min-h-screen overflow-hidden bg-[#f7f1e8] text-[#3f343a]">
       {/* 배경 */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute -left-40 -top-40 h-[500px] w-[500px] rounded-full bg-[#aa8ba7]/15 blur-3xl" />

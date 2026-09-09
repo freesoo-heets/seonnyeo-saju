@@ -1,7 +1,6 @@
 import Link from "next/link";
 
 export const instant = false;
-
 export default async function ErrorPage({
   searchParams,
 }: {
@@ -10,7 +9,7 @@ export default async function ErrorPage({
   const { error } = await searchParams;
 
   return (
-    <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#f7f1e8] px-4 py-10 text-[#3f343a] sm:px-6">
+    <main className="saju-page relative flex min-h-screen items-center justify-center overflow-hidden bg-[#f7f1e8] px-4 py-10 text-[#3f343a] sm:px-6">
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute -left-28 -top-32 h-[340px] w-[340px] rounded-full bg-[#b69eb6]/15 blur-3xl" />
         <div className="absolute -right-24 top-[18%] h-[310px] w-[310px] rounded-full bg-[#d4bd89]/20 blur-3xl" />

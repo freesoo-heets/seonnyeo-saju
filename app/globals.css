@@ -809,3 +809,155 @@ tbody tr:hover {
 
 
 /* === SEONNYEO FINAL UI END === */
+
+/* ==========================================================
+   Seonnyeo Saju · visual polish 2026-09
+   ========================================================== */
+:root {
+  --saju-ink: #392f37;
+  --saju-plum: #55345f;
+  --saju-plum-dark: #43264d;
+  --saju-gold: #b9975d;
+  --saju-paper: #f7f1e8;
+  --saju-paper-2: #fcf8f2;
+  --saju-line: #e2d4c4;
+}
+
+body {
+  background:
+    radial-gradient(circle at 10% 0%, rgba(191, 170, 205, 0.16), transparent 28rem),
+    radial-gradient(circle at 92% 12%, rgba(225, 203, 154, 0.18), transparent 25rem),
+    #f7f1e8;
+  color: var(--saju-ink);
+}
+
+.saju-page {
+  position: relative;
+  background:
+    radial-gradient(circle at 7% 4%, rgba(183, 159, 190, 0.15), transparent 26rem),
+    radial-gradient(circle at 95% 12%, rgba(219, 193, 139, 0.16), transparent 24rem),
+    linear-gradient(180deg, #f9f4ed 0%, #f7f1e8 100%);
+}
+
+.saju-page::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.32;
+  background-image:
+    linear-gradient(rgba(119, 88, 102, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(119, 88, 102, 0.014) 1px, transparent 1px);
+  background-size: 26px 26px;
+  mask-image: linear-gradient(to bottom, black, transparent 80%);
+}
+
+.saju-panel {
+  border: 1px solid var(--saju-line);
+  background: rgba(255, 253, 249, 0.94);
+  box-shadow: 0 14px 44px rgba(71, 46, 59, 0.065);
+  backdrop-filter: blur(10px);
+}
+
+.saju-hero-card {
+  position: relative;
+  background:
+    radial-gradient(circle at 88% 16%, rgba(205, 178, 218, 0.25), transparent 17rem),
+    radial-gradient(circle at 72% 86%, rgba(224, 201, 153, 0.18), transparent 18rem),
+    rgba(255, 253, 249, 0.94);
+  box-shadow: 0 18px 55px rgba(72, 47, 60, 0.075);
+}
+
+.saju-hero-card::after {
+  content: "緣";
+  position: absolute;
+  right: 28px;
+  bottom: -22px;
+  font-family: serif;
+  font-size: 118px;
+  line-height: 1;
+  color: rgba(85, 52, 95, 0.035);
+  pointer-events: none;
+}
+
+.saju-eyebrow {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.24em;
+  color: #9d7d50;
+}
+
+.saju-btn-primary,
+.saju-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  border-radius: 14px;
+  padding: 0.65rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  transition: transform 0.15s ease, box-shadow 0.18s ease, background-color 0.18s ease;
+}
+
+.saju-btn-primary {
+  border: 1px solid #55345f;
+  background: linear-gradient(145deg, #65436f, #503059);
+  color: white;
+  box-shadow: 0 7px 20px rgba(84, 50, 95, 0.16);
+}
+
+.saju-btn-secondary {
+  border: 1px solid #dfd2c2;
+  background: rgba(255, 250, 244, 0.94);
+  color: #675a61;
+}
+
+.saju-btn-primary:hover,
+.saju-btn-secondary:hover {
+  transform: translateY(-1px);
+}
+
+.saju-btn-primary:hover {
+  box-shadow: 0 10px 25px rgba(84, 50, 95, 0.2);
+}
+
+.saju-btn-secondary:hover {
+  background: white;
+  border-color: #cbb89e;
+}
+
+@media (max-width: 640px) {
+  .saju-hero-card::after {
+    right: 8px;
+    font-size: 82px;
+  }
+}
+
+.seonnyeo-card {
+  border: 1px solid #dfd0bd;
+  border-radius: 30px;
+  background: rgba(255, 253, 249, 0.94);
+  box-shadow: 0 16px 48px rgba(72, 47, 60, 0.075);
+  backdrop-filter: blur(10px);
+}
+.seonnyeo-gold-line {
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #b9975d, transparent);
+}
+.seonnyeo-eyebrow {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.26em;
+  color: #a18457;
+}
+
+/* 입력/카드 톤을 사이트 전역에서 부드럽게 통일 */
+input, textarea, select {
+  border-color: #dfd3c5 !important;
+  background: #fffdf9 !important;
+}
+input:focus, textarea:focus, select:focus {
+  border-color: #8d65a0 !important;
+  box-shadow: 0 0 0 3px rgba(141, 101, 160, 0.12) !important;
+}

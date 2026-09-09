@@ -95,7 +95,7 @@ export default function ApplyPage() {
 
   if (completed) {
     return (
-      <main className="relative min-h-screen overflow-hidden bg-[#f7f1e8] px-4 py-10 text-[#3f343a] sm:px-6">
+      <main className="saju-page relative min-h-screen overflow-hidden bg-[#f7f1e8] px-4 py-10 text-[#3f343a] sm:px-6">
         <div className="mx-auto max-w-md">
           <div className="rounded-3xl bg-white p-8 text-center shadow-sm">
             <div className="mb-5 text-5xl"></div>
@@ -147,7 +147,7 @@ export default function ApplyPage() {
   }
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-[#f7f1e8] px-4 py-8 text-[#3f343a] sm:px-6">
+    <main className="saju-page relative min-h-screen overflow-hidden bg-[#f7f1e8] px-4 py-8 text-[#3f343a] sm:px-6">
       <div className="relative mx-auto w-full max-w-2xl">
 
         <header className="mb-8 text-center sm:mb-10">
@@ -162,6 +162,11 @@ export default function ApplyPage() {
           </p>
         </header>
 
+        <div className="mb-5 rounded-2xl border border-[#dfd2c2] bg-[#fffaf4] px-4 py-3 text-sm leading-6 text-[#74676d]">
+          <strong className="text-[#55345f]">신청자 닉네임</strong>은 현재 로그인한 계정으로 자동 기록됩니다.
+          아래에는 실제 사주를 볼 대상의 정보를 입력해주세요.
+        </div>
+
         <form onSubmit={handleSubmit} className="space-y-6">
 
           <section className="rounded-[26px] border border-[#dfd2c1] bg-[rgba(255,253,249,0.94)] p-5 shadow-[0_12px_40px_rgba(70,47,60,0.06)] sm:p-6">
@@ -171,13 +176,13 @@ export default function ApplyPage() {
 
             <label className="block">
               <span className="text-sm text-neutral-600">
-                이름 / 닉네임
+                사주 대상 이름
               </span>
 
               <input
                 value={customerName}
                 onChange={(e) => setCustomerName(e.target.value)}
-                placeholder="예: 홍길동"
+                placeholder="예: 홍길동 (본인 또는 상담 대상)"
                 className="mt-2 w-full rounded-xl border border-neutral-200 px-4 py-3 outline-none focus:border-[#876d82]"
               />
             </label>

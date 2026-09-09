@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 
@@ -402,7 +402,7 @@ export function MemberManager() {
         </div>
       )}
 
-      <section className="rounded-3xl bg-white p-5 shadow-sm sm:p-7">
+      <section className="saju-panel rounded-[28px] p-5 sm:p-7">
 
         <div>
           <h2 className="text-lg font-bold">
@@ -466,7 +466,7 @@ export function MemberManager() {
             disabled={
               workingId === "create"
             }
-            className="rounded-xl bg-neutral-900 px-5 py-3 text-sm font-bold text-white disabled:opacity-50"
+            className="saju-btn-primary px-5 py-3 text-sm disabled:opacity-50"
           >
             {workingId === "create"
               ? "추가 중..."
@@ -478,7 +478,7 @@ export function MemberManager() {
       </section>
 
 
-      <section className="rounded-3xl bg-white p-5 shadow-sm sm:p-7">
+      <section className="saju-panel rounded-[28px] p-5 sm:p-7">
 
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
 

@@ -1,4 +1,4 @@
-import { ElementText } from "@/components/saju/FiveElementDisplay";
+import { ElementSurface, getCharElement } from "@/components/saju/FiveElementDisplay";
 
 const positionName: Record<string, string> = {
   year: "년주",
@@ -145,22 +145,19 @@ export default function TraditionalSajuAnalysis({
                           index: number
                         ) => (
 
-                          <div
+                          <ElementSurface
                             key={`${item.stem}-${index}`}
-                            className="flex items-center justify-between rounded-xl bg-white px-3 py-2"
+                            element={getCharElement(item.stem)}
+                            className="flex items-center justify-between rounded-xl px-3 py-2"
                           >
-
-                            <div className="font-bold text-neutral-900">
+                            <div className="font-black">
                               {item.stem}
                             </div>
 
-                            <div className="text-xs text-neutral-500">
-                              {item.role}
-                              {"  "}
-                              {item.tenGod}
+                            <div className="text-xs font-medium opacity-70">
+                              {item.role} {item.tenGod}
                             </div>
-
-                          </div>
+                          </ElementSurface>
 
                         )
                       )}
